@@ -49,3 +49,16 @@ Always flash matching `aboot`, `boot`, and `rootfs` partitions together.
 
 - **Supported Carriers**: China Mobile, China Unicom, and international roaming SIMs.
 - **China Telecom Notice**: Not recommended due to carrier-mandated VoLTE-only authentication on current open-source Qualcomm baseband stacks.
+
+
+---
+
+## ⚠️ Important: Baseband Calibration (NVRAM Notice)
+
+- **System Images vs Baseband Data**:
+  - The build output (`aboot.mbn`, `boot.img`, `rootfs.img`) provides the Linux operating system and generic Qualcomm firmware (`/lib/firmware/`).
+  - The physical partitions `modemst1`, `modemst2`, `fsg`, and `fsc` store hardware-specific RF calibration curves and unique 15-digit IMEI credentials.
+- **Rules**:
+  - **Never wipe or flash another device's NVRAM partitions** onto your device.
+  - Before performing any clean/recovery flashing, always back up `modemst1`, `modemst2`, `fsg`, and `fsc`.
+  - If your modem gets stuck in `offline` or reports `DeviceNotReady`, restore your original hardware NVRAM partition backups.
