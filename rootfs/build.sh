@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DISTRO_ARCH="arm64"
-DIST=bookworm
+DIST=trixie
 REPO_URL="https://api.github.com/repos/haris131/uz801v3-kernel/releases"
 BOOT_URL=$(curl -sL "${REPO_URL}" | sed -e 's|"||g' -e 's| ||g' | grep "browser_download_url:*.*-arm64" | sed -e's|browser_download_url:||g' -e 's|,||g' | grep boot.img | awk '{print $1}' | head -n1)
 K_IMAGE_DEB_URL=$(curl -sL "${REPO_URL}" | sed -e 's|"||g' -e 's| ||g' | grep "browser_download_url:*.*-arm64" | sed -e's|browser_download_url:||g' -e 's|,||g' | grep linux-image | awk '{print $1}' | head -n1)
