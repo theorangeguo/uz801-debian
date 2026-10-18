@@ -12,7 +12,7 @@ Debian 13 (Trixie) Linux Distribution for Qualcomm MSM8916 UZ801_V3 / V3.2 USB D
 ## Credentials
 
 - **User**: `root`
-- **Password**: `1234`
+- **Password**: `ChangeMe`
 - **USB RNDIS IP**: `192.168.100.1`
 
 ---
