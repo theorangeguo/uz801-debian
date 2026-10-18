@@ -12,6 +12,9 @@ on:
           - arm64
           - armv7
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build debian
@@ -24,6 +27,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare repository
         run: git config --global --add safe.directory "$(pwd)"
@@ -48,6 +53,8 @@ jobs:
         run: |
           NAME=$(echo "Debian $(cat rootfs/debian_version)")
           TAG_NAME=$(cat rootfs/debian_version)-${{ github.run_number }}-${{ inputs.arch }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag $TAG_NAME
           git push origin $TAG_NAME
           echo -e "- Bootloader: $(cat aboot/ver.txt)\n$(cat rootfs/info.md)\n\n$(git log -1 --format=%B)" > release_notes.md
