@@ -1,10 +1,10 @@
 # uz801v3-debian
 
-Debian 13 (Trixie) Linux Distribution for Qualcomm MSM8916 UZ801_V3 / V3.2 USB Dongles.
+Debian 12 (Bookworm) [Stable LTS] Linux Distribution for Qualcomm MSM8916 UZ801_V3 / V3.2 USB Dongles.
 
 ## Features
 
-- **Base OS**: Pure Minimal Debian 13 (Trixie) arm64.
+- **Base OS**: Pure Minimal Debian 12 (Bookworm) [Stable LTS] arm64.
 - **Kernel**: Modern Linux 6.6 LTS with UZ801V3 hardware device tree.
 - **Out of Box**: Automatic USB Gadget RNDIS network and ADB daemon (`0123456789 device`).
 - **Cellular Support**: Integrated Qualcomm modem firmware and ModemManager.
