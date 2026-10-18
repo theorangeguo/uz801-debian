@@ -54,3 +54,18 @@
   - 推送 `v*` 格式的 Git Tag（如 `git tag v1.2.0 && git push origin --tags`）会自动触发 GitHub Release，直接发布正式打包的 `rootfs-debian.img.gz`。
 - **发布产物规范**：
   - `rootfs-debian.img.gz`：经由 `img2simg` 转换的 Android 稀疏镜像并经 gzip -9 压缩，可直接通过 fastboot 或解压后通过 9008 烧录。
+
+
+---
+
+## 5. 刷机工具与驱动强规范（EDL Bulk Only）
+
+1. **必须且仅使用 edl bulk 进行底层烧录**：
+   - 严禁使用 Qualcomm HS-USB QDLoader 9008 虚拟串口或任何带 COM 口驱动的方案。
+   - 必须通过 WinUSB / libusb 将 9008 设备绑定为 `QHSUSB__BULK`。
+   - 烧录工具统一使用开源 Python `edl`（基于 pyusb / libusb 原生 bulk 通信）：
+     `powershell
+     python "C:\Program Files\edl\edl.py" --loader=<loader.mbn> w <partition> <image_file>
+     `
+2. **严禁单刷 rootfs，必须全量刷入配套底层**：
+   - 内核命令行固定依赖 PARTUUID，每次刷入新系统时，必须同步写入对应的 `aboot.bin`、`boot.img` 与 `rootfs.img`，保证引导链与设备树完全匹配。
