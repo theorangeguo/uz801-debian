@@ -15,7 +15,7 @@ K_IMAGE_DEB_URL=$(curl -sL "${REPO_URL}" | sed -e 's|"||g' -e 's| ||g' | grep "b
 K_HEADER_DEB_URL=$(curl -sL "${REPO_URL}" | sed -e 's|"||g' -e 's| ||g' | grep "browser_download_url:*.*-${1}" | sed -e's|browser_download_url:||g' -e 's|,||g' | grep linux-headers | awk '{print $1}' | head -n1)
 K_DEV_URL=$(curl -sL "${REPO_URL}" | sed -e 's|"||g' -e 's| ||g' | grep "${1}" | sed -e's|browser_download_url:||g' -e 's|,||g' | grep html_url | awk -F 'html_url:' '{print $2}' | head -n1)
 FASTFETCH_URL=$(curl -sL "https://api.github.com/repos/fastfetch-cli/fastfetch/releases" | sed -e 's|"||g' -e 's| ||g' | grep "browser_download_url:" | sed -e's|browser_download_url:||g' -e 's|,||g' | grep "$FAST_ARCH" | awk '{print $1}' | head -n1)
-UUID=62ae670d-01b7-4c7d-8e72-60bcd00410b7
+UUID=a7ab80e8-e9d1-e8cd-f157-93f69b1d141e
 
 if [ `id -u` -ne 0 ]
   then echo "Please run as root"
