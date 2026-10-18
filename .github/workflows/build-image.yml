@@ -6,6 +6,9 @@ on:
     tags: [ 'v*' ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -48,4 +51,4 @@ jobs:
         with:
           files: |
             rootfs-debian.img.gz
-          generate_release_notes: true
+          generate_release_notes: false
