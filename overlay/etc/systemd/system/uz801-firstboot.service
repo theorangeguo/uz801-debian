@@ -1,0 +1,12 @@
+[Unit]
+Description=UZ801 First Boot Initialization Service
+After=local-fs.target
+Before=network.target ssh.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/uz801-firstboot.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

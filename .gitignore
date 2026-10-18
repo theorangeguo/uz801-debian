@@ -1,0 +1,6 @@
+*.img
+*.bin
+*.gz
+rootfs/
+tmp/
+.vscode/
