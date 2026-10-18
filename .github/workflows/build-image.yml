@@ -15,11 +15,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Install Host Build Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y debootstrap qemu-user-static binfmt-support e2fsprogs dosfstools
+          sudo apt-get install -y debootstrap qemu-user-static binfmt-support e2fsprogs dosfstools android-sdk-libsparse-utils
 
       - name: Verify Binfmt for AArch64
         run: |

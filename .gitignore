@@ -1,6 +1,7 @@
 *.img
 *.bin
-*.gz
 rootfs/
 tmp/
 .vscode/
+!kernel/*.tar.gz
+artifact.zip

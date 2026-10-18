@@ -40,7 +40,12 @@ cat << 'EOF' | chroot "$ROOTFS_DIR" /bin/bash
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
-apt-get install -y --no-install-recommends     systemd-sysv locales sudo bash-completion kmod udev     net-tools iproute2 iputils-ping ifupdown dnsmasq-base     network-manager modemmanager libqmi-utils libmbim-utils     openssh-server ca-certificates curl nano htop usbutils     e2fsprogs rmtfs
+apt-get install -y --no-install-recommends \
+    systemd-sysv locales sudo bash-completion kmod udev \
+    net-tools iproute2 iputils-ping ifupdown dnsmasq-base \
+    network-manager modemmanager libqmi-utils libmbim-utils \
+    openssh-server ca-certificates curl nano htop usbutils \
+    e2fsprogs rmtfs
 
 # Locale setup: enforce pure en_US.UTF-8
 sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -64,7 +69,13 @@ apt-get clean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 EOF
 
-echo "=== Step 3: Inject Overlay & Firmware ==="
+echo "=== Step 3: Inject Kernel & Modules ==="
+if [ -f "kernel/uz801-kernel-6.18.tar.gz" ]; then
+    echo "Extracting UZ801 Linux kernel 6.18..."
+    tar -xzf "kernel/uz801-kernel-6.18.tar.gz" -C "$ROOTFS_DIR/"
+fi
+
+echo "=== Step 4: Inject Overlay & Firmware ==="
 cp -r overlay/* "$ROOTFS_DIR/"
 chmod +x "$ROOTFS_DIR/usr/local/bin/uz801-firstboot.sh"
 
