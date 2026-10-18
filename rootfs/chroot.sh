@@ -21,6 +21,7 @@ apt-get update
 apt-get full-upgrade -y
 apt-get install -y locales network-manager openssh-server systemd-timesyncd fake-hwclock zram-tools rmtfs qrtr-tools sudo curl wget htop modemmanager wireless-tools
 apt-get install -y /tmp/*.deb
+systemctl enable rmtfs.service ModemManager.service openstick-sim-changer.service openstick-expanddisk-startup.service
 
 timedatectl set-ntp 1
 sed -i -e "s/# $LANG_TARGET UTF-8/$LANG_TARGET UTF-8/" /etc/locale.gen
