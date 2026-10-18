@@ -1,0 +1,1 @@
+SUBSYSTEM=="extcon", ACTION=="change",ENV{STATE}=="USB=0", DEVPATH=="/devices/platform/soc@0/200f000.spmi/spmi-0/0-00/200f000.spmi:pmic@0:usb-detect@1300/extcon/extcon0", RUN+="/usr/local/bin/restart-gc.sh"

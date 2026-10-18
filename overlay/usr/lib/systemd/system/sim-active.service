@@ -1,0 +1,10 @@
+[Unit]
+Description=try active sim at Startup
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/sim-active.sh
+Restart=no
+
+[Install]
+WantedBy=default.target

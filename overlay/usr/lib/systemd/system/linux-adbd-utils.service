@@ -1,0 +1,11 @@
+[Unit]
+Description=Configure USB gadget
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/linux-usb-gadget setup
+ExecStop=/usr/sbin/linux-usb-gadget reset
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

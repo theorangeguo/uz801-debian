@@ -1,0 +1,10 @@
+# Do not modify this file, it will get overwritten on updates.
+# To override or extend the rules place a file in /etc/udev/rules.d
+#
+SUBSYSTEM!="net", GOTO="l5_nm_managed_end"
+ACTION!="add|change", GOTO="l5_nm_managed_end"
+
+# USB gadget device. It's the equivalent of a regular network interface, so it should be managed, overriding NetworkManager's default rule.
+ENV{DEVTYPE}=="gadget", ENV{NM_UNMANAGED}="0"
+
+LABEL="l5_nm_managed_end"

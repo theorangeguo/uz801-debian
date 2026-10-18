@@ -45,7 +45,7 @@ apt-get install -y --no-install-recommends \
     net-tools iproute2 iputils-ping ifupdown dnsmasq-base \
     network-manager modemmanager libqmi-utils libmbim-utils \
     openssh-server ca-certificates curl nano htop usbutils \
-    e2fsprogs rmtfs
+    e2fsprogs rmtfs qrtr-tools procps
 
 # Locale setup: enforce pure en_US.UTF-8
 sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -75,13 +75,32 @@ if [ -f "kernel/uz801-kernel-6.18.tar.gz" ]; then
     tar -xzf "kernel/uz801-kernel-6.18.tar.gz" -C "$ROOTFS_DIR/"
 fi
 
-echo "=== Step 4: Inject Overlay & Firmware ==="
+echo "=== Step 4: Inject Overlay & Essential Daemons ==="
 cp -r overlay/* "$ROOTFS_DIR/"
-chmod +x "$ROOTFS_DIR/usr/local/bin/uz801-firstboot.sh"
 
-chroot "$ROOTFS_DIR" systemctl enable uz801-firstboot.service || true
+# Make all binaries and scripts executable
+chmod +x "$ROOTFS_DIR"/usr/bin/adbd "$ROOTFS_DIR"/usr/bin/gc || true
+chmod +x "$ROOTFS_DIR"/usr/sbin/linux-usb-gadget || true
+chmod +x "$ROOTFS_DIR"/usr/sbin/sim-active.sh || true
+chmod +x "$ROOTFS_DIR"/usr/sbin/openstick-sim-changer.sh || true
+chmod +x "$ROOTFS_DIR"/usr/sbin/openstick-expanddisk-startup.sh || true
+chmod +x "$ROOTFS_DIR"/usr/local/bin/restart-gc.sh || true
+chmod +x "$ROOTFS_DIR"/usr/local/bin/uz801-firstboot.sh || true
+chmod 600 "$ROOTFS_DIR"/etc/NetworkManager/system-connections/* 2>/dev/null || true
 
-# Firmware injection
+# Enable essential systemd services inside chroot
+cat << 'EOF' | chroot "$ROOTFS_DIR" /bin/bash
+systemctl enable linux-adbd-utils.service || true
+systemctl enable openstick-expanddisk-startup.service || true
+systemctl enable sim-active.service || true
+systemctl enable openstick-sim-changer.service || true
+systemctl enable uz801-firstboot.service || true
+systemctl enable rmtfs.service || true
+systemctl enable ModemManager.service || true
+systemctl enable NetworkManager.service || true
+EOF
+
+echo "=== Step 5: Firmware Injection ==="
 mkdir -p "$ROOTFS_DIR/lib/firmware/qcom/msm8916"
 mkdir -p "$ROOTFS_DIR/lib/firmware/wlan/prima"
 cp -r firmware/qcom/* "$ROOTFS_DIR/lib/firmware/qcom/msm8916/" || true
