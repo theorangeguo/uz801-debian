@@ -1,0 +1,20 @@
+[Unit]
+Description=Select preferred UZ801 SIM slot
+Wants=ModemManager.service
+After=ModemManager.service
+PartOf=ModemManager.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/default/uz801-modem
+EnvironmentFile=-/etc/uz801/device.conf
+ExecStart=/usr/local/sbin/uz801-select-sim
+RemainAfterExit=yes
+TimeoutStartSec=240
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+[Install]
+WantedBy=ModemManager.service

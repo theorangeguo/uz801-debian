@@ -32,11 +32,14 @@ echo "[*] Downloading pinned deb packages..."
 wget -q --show-progress -P deb-pkgs "$FIRMWARE_DEB_URL"
 wget -q --show-progress -P deb-pkgs "$UTILS_DEB_URL"
 
-echo "[*] Running debootstrap for Debian 13 ($DIST)..."
+echo "[*] Running debootstrap for Debian ($DIST)..."
 debootstrap --arch=${DISTRO_ARCH} --foreign $DIST debian https://deb.debian.org/debian/
 LANG=C LANGUAGE=C LC_ALL=C chroot debian /debootstrap/debootstrap --second-stage
 
 cp deb-pkgs/*.deb ../kernel/linux-*.deb chroot.sh debian/tmp/
+cp -a overlay/. debian/
+chmod 0755 debian/usr/local/sbin/uz801-select-sim
+chmod 0644 debian/etc/default/uz801-modem debian/usr/lib/systemd/system/uz801-select-sim.service
 mount --bind /proc debian/proc
 mount --bind /dev debian/dev
 mount --bind /dev/pts debian/dev/pts

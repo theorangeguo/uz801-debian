@@ -1,0 +1,52 @@
+#!/bin/sh
+set -eu
+export LC_ALL=C
+
+preferred_slot="${UZ801_PRIMARY_SIM_SLOT:-1}"
+case "$preferred_slot" in
+    disabled) exit 0 ;;
+    1|2) ;;
+    *) echo "Invalid preferred SIM slot" >&2; exit 1 ;;
+esac
+
+if [ -n "${UZ801_EXPECTED_CID:-}" ]; then
+    if [ "$(cat /sys/block/mmcblk0/device/cid)" != "$UZ801_EXPECTED_CID" ]; then
+        echo "Device CID mismatch; refusing SIM switch" >&2
+        exit 1
+    fi
+fi
+
+attempt=0
+switch_requested=0
+while [ "$attempt" -lt 30 ]; do
+    snapshot="$(timeout 5 mmcli -m any --output-keyvalue 2>/dev/null || true)"
+    imei="$(printf '%s\n' "$snapshot" | sed -n 's/^modem.generic.equipment-identifier[[:space:]]*:[[:space:]]*//p')"
+    slot="$(printf '%s\n' "$snapshot" | sed -n 's/^modem.generic.primary-sim-slot[[:space:]]*:[[:space:]]*//p')"
+    identity_ready=1
+    case "$imei" in ''|'--'|unknown) identity_ready=0 ;; esac
+    if [ -n "${UZ801_EXPECTED_IMEI:-}" ] && [ "$imei" != "$UZ801_EXPECTED_IMEI" ]; then
+        identity_ready=0
+    fi
+    if [ "$identity_ready" -eq 1 ]; then
+        if [ "$slot" = "$preferred_slot" ]; then
+            echo "Preferred SIM slot verified"
+            exit 0
+        fi
+        case "$slot" in
+            1|2)
+                if [ "$switch_requested" -eq 0 ]; then
+                    echo "Requesting preferred SIM slot"
+                    switch_requested=1
+                    if ! timeout 15 mmcli -m any --set-primary-sim-slot="$preferred_slot"; then
+                        echo "SIM switch command did not complete; checking actual slot before failing" >&2
+                    fi
+                fi
+                ;;
+        esac
+    fi
+    attempt=$((attempt + 1))
+    sleep 2
+done
+
+echo "Preferred SIM slot not verified within bounded retries; no radio reset attempted" >&2
+exit 1

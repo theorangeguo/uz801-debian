@@ -1,1 +1,5 @@
 kernel/*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.sh text eol=lf
+*.service text eol=lf
+rootfs/overlay/usr/local/sbin/* text eol=lf
+rootfs/overlay/etc/default/* text eol=lf

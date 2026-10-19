@@ -1,64 +1,31 @@
 # uz801v3-debian
 
-Debian 12 (Bookworm) [Stable LTS] Linux Distribution for Qualcomm MSM8916 UZ801_V3 / V3.2 USB Dongles.
+Debian 12 (Bookworm) arm64 image sources for UZ801 v3 devices, using a community kernel and the necessary USB, storage and modem services. Validate the physical board before deployment; a flashed device-tree name alone is insufficient.
 
-## Features
+## Build and dependencies
 
-- **Base OS**: Pure Minimal Debian 12 (Bookworm) [Stable LTS] arm64.
-- **Kernel**: Modern Linux 6.6 LTS with UZ801V3 hardware device tree.
-- **Out of Box**: Automatic USB Gadget RNDIS network and ADB daemon (`0123456789 device`).
-- **Cellular Support**: Integrated Qualcomm modem firmware and ModemManager.
+`rootfs/build.sh` creates a Debian base with debootstrap, installs the kernel, firmware and OpenStick utility packages, applies `rootfs/overlay/`, and produces an Android sparse `rootfs.img`. `.github/workflows/build.yml` packages `aboot`, `boot.img` and `rootfs.img.xz` and publishes the release when dispatched.
 
-## Credentials
+The build currently resolves kernel assets from the Haris131 kernel releases API and downloads firmware/utilities from this repository's `prebuilt-dependencies` release. Those references are not immutable content locks; updating dependencies requires checking their origin, hashes, package contents and boot/module compatibility. Do not delete the dependency release while the build references it.
 
-- **User**: `root`
-- **Password**: `ChangeMe`
-- **USB RNDIS IP**: `192.168.100.1`
+The configured account is `root` with initial password `ChangeMe`. USB addressing comes from the installed utility package and existing NetworkManager settings; verify it on the device.
 
----
+## Maintained customization
 
-## Flashing SOP (Standard Operating Procedure)
+The default preferred SIM slot is 1, configurable as 1, 2 or `disabled` in `/etc/default/uz801-modem`. Optional device identity guards belong in the private `/etc/uz801/device.conf`. The selector waits for ModemManager, requests one slot change and verifies the result. It does not rewrite NV or reset the modem.
 
-Always flash matching `aboot`, `boot`, and `rootfs` partitions together.
+See [customization and validation](docs/CUSTOMIZATIONS.md) for the source files, deployment instructions and known limits. Existing devices can receive these exact source files through `tools/deploy-modem.py`; rebuilding or flashing rootfs is not necessary for an ordinary configuration update.
 
-### Method 1: Fastboot Flashing (Standard)
-1. Reboot to fastboot:
-   ```bash
-   adb reboot bootloader
-   fastboot devices
-   ```
-2. Flash all images:
-   ```bash
-   fastboot flash aboot aboot.mbn
-   fastboot flash boot boot.img
-   fastboot flash rootfs rootfs.img
-   fastboot reboot
-   ```
+## Flashing and recovery
 
-### Method 2: Qualcomm EDL (9008) Flashing
-1. Hold the hardware key while connecting to USB to enter 9008 EDL mode.
-2. Flash partitions sequentially using an EDL programmer client:
-   - Partition `aboot`: `aboot.mbn`
-   - Partition `boot`: `boot.img`
-   - Partition `rootfs`: `rootfs` raw/sparse image
-3. Send reset command to boot.
+Use Python edl over WinUSB/libusb USB BULK only. Verify the physical target, compatible loader, GPT, image format and complete rollback backups before writing. Host paths and per-device commands belong in the private companion workspace.
 
----
+For an OS installation, validate the bootloader, boot image, kernel modules, rootfs and GPT root partition GUID together, then write only the partitions the installation actually requires. An ext4 UUID is not a GPT PARTUUID. A successful transfer does not prove successful boot.
 
-## Cellular & SIM Notice
+NV partitions are per-device data. Never include them in the public image, restore another device's NV, or restore NV automatically during startup. A modem error alone is not sufficient reason to rewrite NV. An NV-only recovery must not rewrite the OS or GPT; verify complete partition readbacks after writing.
 
-- **Supported Carriers**: China Mobile, China Unicom, and international roaming SIMs.
-- **China Telecom Notice**: Not recommended due to carrier-mandated VoLTE-only authentication on current open-source Qualcomm baseband stacks.
+## Validation
 
+Run `python3 -m unittest discover -s tests -v`, `bash -n rootfs/build.sh rootfs/chroot.sh`, and `sh -n rootfs/overlay/usr/local/sbin/uz801-select-sim`. The separate modem check workflow runs these checks without building or publishing an image.
 
----
-
-## ⚠️ Important: Baseband Calibration (NVRAM Notice)
-
-- **System Images vs Baseband Data**:
-  - The build output (`aboot.mbn`, `boot.img`, `rootfs.img`) provides the Linux operating system and generic Qualcomm firmware (`/lib/firmware/`).
-  - The physical partitions `modemst1`, `modemst2`, `fsg`, and `fsc` store hardware-specific RF calibration curves and unique 15-digit IMEI credentials.
-- **Rules**:
-  - **Never wipe or flash another device's NVRAM partitions** onto your device.
-  - Before performing any clean/recovery flashing, always back up `modemst1`, `modemst2`, `fsg`, and `fsc`.
-  - If your modem gets stuck in `offline` or reports `DeviceNotReady`, restore your original hardware NVRAM partition backups.
+After deployment or flashing, verify USB/ADB, hardware identity, the selected SIM and network registration after reboot and cold boot. Test a newly received SMS and Internet connectivity separately. Carrier and subscription behavior must be verified with the actual SIM; signal strength or a registered modem does not establish all services work.
