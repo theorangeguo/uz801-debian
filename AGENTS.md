@@ -18,6 +18,8 @@
 
 ## Build and deployment rules
 
+- Keep data roaming disabled by default. Never enable roaming, cellular data autoconnect, chargeable Internet tests or outbound SMS without explicit user authorization. Preserve the user's disabled data setting during deployment; SMS registration checks do not authorize a data session.
+
 - Keep boot image, kernel modules and device tree compatible. `root=PARTUUID=` refers to the GPT partition GUID; the ext4 filesystem UUID is separate.
 - Do not package an image without working USB Gadget and ADB startup. The current openstick-utils implementation provides `/usr/bin/adbd`, `/usr/bin/gc`, `/usr/sbin/openstick-gc-manager.sh`, and `openstick-gc-startup.service`. Recheck package contents when updating dependencies.
 - Keep shell sources LF. Run shell syntax checks and selector tests before deployment.

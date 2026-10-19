@@ -4,6 +4,8 @@ This document records the customization added for preferred SIM selection. It is
 
 ## Ownership boundary
 
+Cost policy: keep mobile data roaming disabled. Deployment and diagnostics must not enable roaming, cellular data autoconnect, Internet traffic tests or outbound SMS without explicit user authorization. The maintained overlay creates no cellular data profile, and the deployment and verification tools do not dial a data connection. A modem registered on a visited network is not, by itself, evidence of a user data session.
+
 | Image repository | Private companion workspace |
 | --- | --- |
 | Generic scripts, systemd units, default settings, build integration | Device identity and physical PCB revision |
