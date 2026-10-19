@@ -4,6 +4,16 @@ set -e
 DISTRO_ARCH="arm64"
 DIST=bookworm
 UUID=a7ab80e8-e9d1-e8cd-f157-93f69b1d141e
+FIRMWARE_PROFILE="${UZ801_FIRMWARE_PROFILE:-packaged}"
+MODEM_FIRMWARE_DIR="${UZ801_MODEM_FIRMWARE_DIR:-}"
+
+if [ "$FIRMWARE_PROFILE" != packaged ]; then
+  case "$FIRMWARE_PROFILE" in
+    ''|*[!a-z0-9._-]*) echo "Invalid firmware profile" >&2; exit 1 ;;
+  esac
+  test -d "$MODEM_FIRMWARE_DIR" || { echo "Provide UZ801_MODEM_FIRMWARE_DIR for the selected profile" >&2; exit 1; }
+  python3 ../tools/firmware_profile.py --profile "firmware-profiles/$FIRMWARE_PROFILE.json" --source "$MODEM_FIRMWARE_DIR"
+fi
 
 # External pinned dependency URLs (Managed & Version-locked)
 KERNEL_REPO_URL="https://api.github.com/repos/haris131/uz801v3-kernel/releases"
@@ -47,6 +57,11 @@ mount --bind /sys debian/sys
 
 echo "[*] Executing chroot customization..."
 LANG=C LANGUAGE=C LC_ALL=C chroot debian /tmp/chroot.sh
+
+if [ "$FIRMWARE_PROFILE" != packaged ]; then
+  python3 ../tools/firmware_profile.py --profile "firmware-profiles/$FIRMWARE_PROFILE.json" --source "$MODEM_FIRMWARE_DIR" --root debian
+fi
+printf '\n- Modem firmware profile: %s\n' "$FIRMWARE_PROFILE" >> debian/tmp/info.md
 
 umount debian/proc
 umount debian/dev/pts

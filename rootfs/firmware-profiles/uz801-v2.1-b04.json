@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "uz801-v2.1-b04",
+  "description": "Legacy UZ801 B04 modem firmware, tested on one user-confirmed v2.1 board",
+  "firmware_revision": "UZ801_V01R01B04 1 [Jul 14 2014 07:00:00]",
+  "scope": "Modem executable firmware only; no NV, board calibration, Wi-Fi firmware or credentials",
+  "source_warning": "Audited legacy Debian extraction; successful live test is not proof of untouched factory provenance or all board revisions",
+  "files": {
+    "modem.b00": {
+      "sha256": "b730ca6c3238d9b50c400e617c378a31e0864df83a0f81a79725c7b6b7b9e685",
+      "bytes": 916
+    },
+    "modem.b01": {
+      "sha256": "11f4bfa38b24316e0de911fe634b74d343f3dd4b66a9cf60ac9842c533b7406b",
+      "bytes": 7304
+    },
+    "modem.b02": {
+      "sha256": "5baeb3ecfabd87477c2bcf73d95bd0060abe34de3854f7a79514659dc528d3d9",
+      "bytes": 4212
+    },
+    "modem.b03": {
+      "sha256": "e5de309f5ef2a62e799302c8b6349e5eadc39be00983b349a4298a20ae21b4d5",
+      "bytes": 5376
+    },
+    "modem.b04": {
+      "sha256": "cd248e1cc2c0a9b30154d49ca21c8cbe35098927e06f6411b863bafdb5ce0c15",
+      "bytes": 139264
+    },
+    "modem.b05": {
+      "sha256": "f11fe57879fd7c652026a11e04797b4de1ce0aa391927ef62b54c1a4ac9fb2eb",
+      "bytes": 81920
+    },
+    "modem.b08": {
+      "sha256": "109d89e7f040e701747bdbd2f12cb78f77f1e82d4cee0d81c3a52f5313ab85d1",
+      "bytes": 169424
+    },
+    "modem.b10": {
+      "sha256": "6fb880db6396cfb4ba26a930ffbed34f7d123f71d1dca7047f3dd484aa443460",
+      "bytes": 48704
+    },
+    "modem.b11": {
+      "sha256": "94be2198940b92ed7b47d6c3bf5c84cc79553bb291dc7f66b19c060906f20abc",
+      "bytes": 46344
+    },
+    "modem.b13": {
+      "sha256": "f29e828aa637e1cd5ec9829a7ca5e00dc656da4f93c385b05f1ca3e563e8d06c",
+      "bytes": 99508
+    },
+    "modem.b14": {
+      "sha256": "adb8eef1c478927b228d1c38d5713dfd933f0c8864aec98eb550148b89e4053b",
+      "bytes": 114580
+    },
+    "modem.b15": {
+      "sha256": "9e2fa93eb01f47c86a7114fd5060314ef93b8e4a813c686def1a306100bd1010",
+      "bytes": 1657224
+    },
+    "modem.b16": {
+      "sha256": "290893907f256e05ec822edffb0ba54bc50f2e4014c0ec2c6b66ce5a16368778",
+      "bytes": 17214640
+    },
+    "modem.b17": {
+      "sha256": "cc3635fbbf00db873bc4aa1d94edcef4dca25ca93dcd334f05ed4b0c53c1b34c",
+      "bytes": 663520
+    },
+    "modem.b18": {
+      "sha256": "26a08a3a3d21a104ab21b3f54e8536985a55d75e593c42a0ca3a2e8a59ca4d54",
+      "bytes": 6701136
+    },
+    "modem.b19": {
+      "sha256": "a06257998009caa4a01319a1b548f7d4b38018331be5f78c0c46c85c0b66c957",
+      "bytes": 3060360
+    },
+    "modem.b22": {
+      "sha256": "e92ed951d24eefd00c61903dcd2cbaae1adc9955b349f1d6ed0d8a2ca7443dca",
+      "bytes": 75592
+    },
+    "modem.b23": {
+      "sha256": "4f844723abb3d214a8b523af405719fa8be1d4eff8b08823f6a2224322c53b6c",
+      "bytes": 422110
+    },
+    "modem.b24": {
+      "sha256": "b9c6750eaa055d35cabc111f3ec1395dc32e8c6cc36aae402c66f9c9c00f2e48",
+      "bytes": 9071604
+    },
+    "modem.b25": {
+      "sha256": "c4dc84e908aa60f4dfc515fb1f26b8cf16b10bfaa4c92c6cfe9293045eec7b3a",
+      "bytes": 244340
+    },
+    "modem.mdt": {
+      "sha256": "c017d4d6bb7771e2e7b63db87a25908b518b2d8366031c24ac1ebb76f44f3650",
+      "bytes": 8220
+    },
+    "mba.mbn": {
+      "sha256": "fc35db784c3bd1a32c329e635c2035c1fad2ff3f85766d5b320af3fd02fad5dc",
+      "bytes": 225984
+    }
+  }
+}

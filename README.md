@@ -8,6 +8,8 @@ Debian 12 (Bookworm) arm64 image sources for UZ801 v3 devices, using a community
 
 The build currently resolves kernel assets from the Haris131 kernel releases API and downloads firmware/utilities from this repository's `prebuilt-dependencies` release. Those references are not immutable content locks; updating dependencies requires checking their origin, hashes, package contents and boot/module compatibility. Do not delete the dependency release while the build references it.
 
+An explicit, pinned modem firmware profile can override the packaged set for a verified board variant. The optional `uz801-v2.1-b04` profile was tested on one user-confirmed v2.1 board; the default build keeps its packaged firmware. See [firmware profiles](docs/FIRMWARE-PROFILES.md) for source validation, build inputs and deployment. Firmware executable profiles never contain per-device NV.
+
 The configured account is `root` with initial password `ChangeMe`. USB addressing comes from the installed utility package and existing NetworkManager settings; verify it on the device.
 
 ## Maintained customization

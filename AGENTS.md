@@ -21,6 +21,7 @@
 - Keep data roaming disabled by default. Never enable roaming, cellular data autoconnect, chargeable Internet tests or outbound SMS without explicit user authorization. Preserve the user's disabled data setting during deployment; SMS registration checks do not authorize a data session.
 
 - Keep boot image, kernel modules and device tree compatible. `root=PARTUUID=` refers to the GPT partition GUID; the ext4 filesystem UUID is separate.
+- Optional modem firmware profiles must pin every executable filename, size and SHA256. Check the complete extraction lineage and target runtime behavior; never infer ownership or suitability from a backup directory. Keep per-device NV separate. The default packaged firmware must not be silently replaced for all boards by one device's successful variant.
 - Do not package an image without working USB Gadget and ADB startup. The current openstick-utils implementation provides `/usr/bin/adbd`, `/usr/bin/gc`, `/usr/sbin/openstick-gc-manager.sh`, and `openstick-gc-startup.service`. Recheck package contents when updating dependencies.
 - Keep shell sources LF. Run shell syntax checks and selector tests before deployment.
 - Use `tools/deploy-modem.py` for existing devices. It verifies CID, preserves backups, installs the same overlay sources and enables the selector. Record deployed hashes and settings privately.
