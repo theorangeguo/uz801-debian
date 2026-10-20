@@ -1,33 +1,44 @@
-# uz801v3-debian
+# uz801-debian
 
-Debian 12 (Bookworm) arm64 image sources for UZ801 v3 devices, using a community kernel and the necessary USB, storage and modem services. Validate the physical board before deployment; a flashed device-tree name alone is insufficient.
+Debian 12 (Bookworm) arm64 image sources and maintenance tools for the tested UZ801 v3.0 and v2.1 variants. This repository maintains common startup behavior and explicit firmware profiles; per-device identity, NV, backups and recovery logs stay in the private companion workspace.
 
-## Build and dependencies
+## Verified scope and release status
 
-`rootfs/build.sh` creates a Debian base with debootstrap, installs the kernel, firmware and OpenStick utility packages, applies `rootfs/overlay/`, and produces an Android sparse `rootfs.img`. `.github/workflows/build.yml` packages `aboot`, `boot.img` and `rootfs.img.xz` and publishes the release when dispatched.
+Existing-device repairs on one user-confirmed v3.0 and one v2.1 board passed reboot, user power disconnect/reconnect and new incoming SMS checks. That does not certify every board revision, carrier, Internet connectivity or outbound SMS.
 
-The build currently resolves kernel assets from the Haris131 kernel releases API and downloads firmware/utilities from this repository's `prebuilt-dependencies` release. Those references are not immutable content locks; updating dependencies requires checking their origin, hashes, package contents and boot/module compatibility. Do not delete the dependency release while the build references it.
+New complete images containing these changes have not yet been built and published for both boards. Do not describe older Release images as newly validated dual-board images.
 
-An explicit, pinned modem firmware profile can override the packaged set for a verified board variant. The optional `uz801-v2.1-b04` profile was tested on one user-confirmed v2.1 board; the default build keeps its packaged firmware. See [firmware profiles](docs/FIRMWARE-PROFILES.md) for source validation, build inputs and deployment. Firmware executable profiles never contain per-device NV.
+| Board | Current maintained firmware input | Target dependency name | Target image product name |
+| --- | --- | --- | --- |
+| v3.0 | Existing packaged baseline, legacy asset firmware-uz801v3.deb | uz801-v3.0-firmware.deb | uz801-v3.0-debian |
+| v2.1 tested variant | Pinned uz801-v2.1-b04 profile, binary files supplied explicitly | uz801-v2.1-firmware.deb | uz801-v2.1-debian |
 
-The configured account is `root` with initial password `ChangeMe`. USB addressing comes from the installed utility package and existing NetworkManager settings; verify it on the device.
+The renamed dependency assets in the table are target names, not a claim that those assets have been published. The current prebuilt-dependencies release supplies the legacy v3 firmware asset and openstick-utils-all.deb. The utility package contains shared USB/ADB/expansion code and SIM/LED defaults that require board configuration review. Never install two competing board firmware packages together.
 
-## Maintained customization
+## Build
 
-The default preferred SIM slot is 1, configurable as 1, 2 or `disabled` in `/etc/default/uz801-modem`. Optional device identity guards belong in the private `/etc/uz801/device.conf`. The selector waits for ModemManager, requests one slot change and verifies the result. It does not rewrite NV or reset the modem.
+rootfs/build.sh uses debootstrap for Debian Bookworm, installs kernel/firmware/utility packages, applies rootfs/overlay and produces rootfs.img. The manually dispatched .github/workflows/build.yml builds the current packaged baseline and publishes its artifacts; it is not yet a completed two-board release matrix. Only arm64 is implemented.
 
-See [customization and validation](docs/CUSTOMIZATIONS.md) for the source files, deployment instructions and known limits. Existing devices can receive these exact source files through `tools/deploy-modem.py`; rebuilding or flashing rootfs is not necessary for an ordinary configuration update.
+The kernel assets are resolved from the Haris131 releases API; firmware and utilities come from this repository's dependency release. Those references are not immutable content locks. Check exact origin, hashes, package contents and boot/module/device-tree compatibility when updating them. Keep the dependency release while builds reference it.
 
-## Flashing and recovery
+For the optional v2.1 B04 set, set UZ801_FIRMWARE_PROFILE=uz801-v2.1-b04 and UZ801_MODEM_FIRMWARE_DIR to the complete local set. All lengths and hashes are checked before building and the files are applied after dependency packages. See docs/FIRMWARE-PROFILES.md. Default builds retain their packaged firmware.
 
-Use Python edl over WinUSB/libusb USB BULK only. Verify the physical target, compatible loader, GPT, image format and complete rollback backups before writing. Host paths and per-device commands belong in the private companion workspace.
+## Startup and maintenance
 
-For an OS installation, validate the bootloader, boot image, kernel modules, rootfs and GPT root partition GUID together, then write only the partitions the installation actually requires. An ext4 UUID is not a GPT PARTUUID. A successful transfer does not prove successful boot.
+The maintained SIM selector, systemd unit and default policy live in rootfs/overlay. Preferred slot defaults to 1 and can be set to 2 or disabled. Private CID/IMEI guards belong in /etc/uz801/device.conf, never in the public image.
 
-NV partitions are per-device data. Never include them in the public image, restore another device's NV, or restore NV automatically during startup. A modem error alone is not sufficient reason to rewrite NV. An NV-only recovery must not rewrite the OS or GPT; verify complete partition readbacks after writing.
+tools/deploy-modem.py deploys the same sources to an existing device with backups and identity checks. tools/deploy-firmware.py persists a complete, pinned, successful RAM-tested firmware set. tools/verify-modem.py checks identity, slot, registration, persistent backend and source hashes. See docs/CUSTOMIZATIONS.md and docs/FIRMWARE-PROFILES.md.
 
-## Validation
+Default data roaming and cellular autoconnect remain disabled. Diagnostics do not authorize Internet traffic or outbound SMS. Network registration and receiving SMS are separate acceptance checks.
 
-Run `python3 -m unittest discover -s tests -v`, `bash -n rootfs/build.sh rootfs/chroot.sh`, and `sh -n rootfs/overlay/usr/local/sbin/uz801-select-sim`. The separate modem check workflow runs these checks without building or publishing an image.
+## Installation SOP
 
-After deployment or flashing, verify USB/ADB, hardware identity, the selected SIM and network registration after reboot and cold boot. Test a newly received SMS and Internet connectivity separately. Carrier and subscription behavior must be verified with the actual SIM; signal strength or a registered modem does not establish all services work.
+Start with docs/INSTALLATION-SOP.md, then docs/SOP-UZ801-v3.0.md or docs/SOP-UZ801-v2.1.md. Actual identity and device-specific commands are in the private workspace's matched device SOP.
+
+Partition writes use Python EDL over USB BULK only. Fastboot may be used to enter EDL, never to write partitions. Do not flash an unknown backup or whole disk by filename. Preserve GPT and per-device NV during normal OS installation; an NV-only repair must not rewrite the OS. A GPT PARTUUID is separate from an ext4 UUID.
+
+Initial image account: root / ChangeMe. Actual USB addressing and optional applications depend on the installed package/configuration; verify them rather than copying historical assumptions.
+
+## Checks
+
+Run python3 -m unittest discover -s tests -v, bash -n rootfs/build.sh rootfs/chroot.sh, and sh -n rootfs/overlay/usr/local/sbin/uz801-select-sim. The separate modem-check workflow runs source checks without publishing an image. Source checks, a successful build and a cold-booted image are separate evidence.

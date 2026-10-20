@@ -1,4 +1,4 @@
-name: Build debian
+name: Build UZ801 v3.0 packaged baseline
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -10,14 +10,13 @@ on:
         type: choice
         options:
           - arm64
-          - armv7
 
 permissions:
   contents: write
 
 jobs:
   build:
-    name: Build debian
+    name: Build UZ801 v3.0 packaged baseline
     runs-on: ubuntu-latest
     steps:
       - name: Prepare
@@ -36,13 +35,13 @@ jobs:
       - name: Build
         run: |
           cd rootfs
-          sudo ./build.sh "${{ inputs.arch }}"
+          sudo ./build.sh "${{ inputs.arch || 'arm64' }}"
           sudo xz rootfs.img
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: debian
+          name: uz801-v3.0-debian
           path: |
             aboot/*.mbn
             kernel/*.img
@@ -51,8 +50,8 @@ jobs:
       - name: Generate release tag
         id: version
         run: |
-          NAME=$(echo "Debian $(cat rootfs/debian_version)")
-          TAG_NAME=$(cat rootfs/debian_version)-${{ github.run_number }}-${{ inputs.arch }}
+          NAME=$(echo "UZ801 v3.0 Debian $(cat rootfs/debian_version)")
+          TAG_NAME=uz801-v3.0-debian-$(cat rootfs/debian_version)-${{ github.run_number }}-${{ inputs.arch || 'arm64' }}
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag $TAG_NAME

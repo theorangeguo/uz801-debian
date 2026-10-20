@@ -2,6 +2,10 @@
 set -e
 
 DISTRO_ARCH="arm64"
+if [ "${1:-arm64}" != arm64 ]; then
+  echo "Only arm64 is implemented and validated by this build" >&2
+  exit 1
+fi
 DIST=bookworm
 UUID=a7ab80e8-e9d1-e8cd-f157-93f69b1d141e
 FIRMWARE_PROFILE="${UZ801_FIRMWARE_PROFILE:-packaged}"
@@ -17,7 +21,7 @@ fi
 
 # External pinned dependency URLs (Managed & Version-locked)
 KERNEL_REPO_URL="https://api.github.com/repos/haris131/uz801v3-kernel/releases"
-DEP_RELEASE_URL="https://github.com/theorangeguo/uz801v3-debian/releases/download/prebuilt-dependencies"
+DEP_RELEASE_URL="https://github.com/theorangeguo/uz801-debian/releases/download/prebuilt-dependencies"
 FIRMWARE_DEB_URL="${DEP_RELEASE_URL}/firmware-uz801v3.deb"
 UTILS_DEB_URL="${DEP_RELEASE_URL}/openstick-utils-all.deb"
 
