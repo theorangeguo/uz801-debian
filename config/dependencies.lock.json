@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "dependency_release": "board-dependencies-2026.10.20.1",
+  "architecture": "arm64",
+  "distribution": "bookworm",
+  "kernel_release": "v6.6.92-arm64",
+  "kernel": {
+    "boot": {
+      "filename": "boot.img",
+      "url": "https://github.com/Haris131/uz801v3-kernel/releases/download/v6.6.92-arm64/boot.img",
+      "sha256": "04454a3aa6ed8109296804ed94358ad248c6b97b7c184629a8fdf7c6ba69ac98",
+      "bytes": 15540224
+    },
+    "image": {
+      "filename": "linux-image-6.6.92_6.6.92-g86646db1d6b3-1_arm64.deb",
+      "url": "https://github.com/Haris131/uz801v3-kernel/releases/download/v6.6.92-arm64/linux-image-6.6.92_6.6.92-g86646db1d6b3-1_arm64.deb",
+      "sha256": "b55c96ce8ea69f6cd4deb37a580798b50334b16df4dbfd5eaa588c96cc39430a",
+      "bytes": 16450156
+    },
+    "headers": {
+      "filename": "linux-headers-6.6.92_6.6.92-g86646db1d6b3-1_arm64.deb",
+      "url": "https://github.com/Haris131/uz801v3-kernel/releases/download/v6.6.92-arm64/linux-headers-6.6.92_6.6.92-g86646db1d6b3-1_arm64.deb",
+      "sha256": "c021e27fc79d0db04f66b435983f0e8f550689427341b07f2eca60af944988fd",
+      "bytes": 8480136
+    }
+  },
+  "utils": {
+    "filename": "openstick-utils-all.deb",
+    "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.20.1/openstick-utils-all.deb",
+    "sha256": "413c88713da53e7df6bb9944233603d6076ff0079319fb114e1d3dc04b5eac88",
+    "bytes": 2432498
+  },
+  "boards": {
+    "uz801-v2.1": {
+      "product": "uz801-v2.1-debian",
+      "hostname": "uz801-v2-1",
+      "firmware_profile": "uz801-v2.1-b04",
+      "firmware": {
+        "filename": "uz801-v2.1-firmware.deb",
+        "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.20.1/uz801-v2.1-firmware.deb",
+        "sha256": "378da88ebbece4c825ce72122271f12cb7375dd39409a2557a7b94bcedcd3911",
+        "bytes": 29119592,
+        "package": "uz801-v2.1-firmware",
+        "manifest": "packaging/manifests/uz801-v2.1-firmware.json"
+      }
+    },
+    "uz801-v3.0": {
+      "product": "uz801-v3.0-debian",
+      "hostname": "uz801-v3-0",
+      "firmware_profile": "uz801-v3.0-b10",
+      "firmware": {
+        "filename": "uz801-v3.0-firmware.deb",
+        "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.20.1/uz801-v3.0-firmware.deb",
+        "sha256": "1a3e270ae055748a3d585fe86111cacf007c162d7c3d294f973ff4855c08feaf",
+        "bytes": 29652948,
+        "package": "uz801-v3.0-firmware",
+        "manifest": "packaging/manifests/uz801-v3.0-firmware.json"
+      }
+    }
+  }
+}

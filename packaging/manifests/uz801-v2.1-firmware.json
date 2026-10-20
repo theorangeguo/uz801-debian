@@ -1,0 +1,595 @@
+{
+  "schema_version": 1,
+  "board": "uz801-v2.1",
+  "package": "uz801-v2.1-firmware",
+  "version": "1.0.0+20261020.1",
+  "filename": "uz801-v2.1-firmware.deb",
+  "sha256": "378da88ebbece4c825ce72122271f12cb7375dd39409a2557a7b94bcedcd3911",
+  "bytes": 29119592,
+  "base_package_sha256": "fdd545e9a5b1d84d471e89be81e85cafebc05a72f293122cb93a72c15a705820",
+  "modem_profile": "uz801-v2.1-b04",
+  "vendor_wlan_defaults": "Unchanged from the pinned public vendor base; not taken from a private device capture",
+  "per_device_nv_included": false,
+  "files": {
+    "usr/lib/firmware/cmnlib.b00": {
+      "bytes": 180,
+      "sha256": "49404efadfda7f42bb8b27c60808372a828e1eea063d97e33e5fdb6363dde175"
+    },
+    "usr/lib/firmware/cmnlib.b01": {
+      "bytes": 6568,
+      "sha256": "9e37a97571b31b7491fdbb682bbb4b692baea8baed3cd4f257a8a50031ac9d53"
+    },
+    "usr/lib/firmware/cmnlib.b02": {
+      "bytes": 119812,
+      "sha256": "dd014ae4bb3d01344669ab36663a0ea748582b7ea65a94f7f50e1d9c138e2965"
+    },
+    "usr/lib/firmware/cmnlib.b03": {
+      "bytes": 4456,
+      "sha256": "7f1a8e8f94ee07ce209add9e1869b604d288d9cc9f233b08f2f5c8158dbd6f84"
+    },
+    "usr/lib/firmware/cmnlib.mdt": {
+      "bytes": 6748,
+      "sha256": "b89fcda3ddf08cdfede2a2ed88de882601367bae4d28433a46b5acca44b1ebff"
+    },
+    "usr/lib/firmware/ice40.bin": {
+      "bytes": 32299,
+      "sha256": "3bf16da35151eeb371d686336dd32d40390ef228d19f4171b64ee703c66e1821"
+    },
+    "usr/lib/firmware/isdbtmm.b00": {
+      "bytes": 180,
+      "sha256": "608d5869ae45aee25ce5516ca9c991869864790ce55c3315bd8a56535039fdeb"
+    },
+    "usr/lib/firmware/isdbtmm.b01": {
+      "bytes": 6568,
+      "sha256": "3cac27ea9e446986bb8cf58316ce7d21a8645afd27231fa59fb996befc85afd6"
+    },
+    "usr/lib/firmware/isdbtmm.b02": {
+      "bytes": 43640,
+      "sha256": "2b5053f982887a8929866437392dfe6738fea6e2128f83b9d878b9c86a7dfc99"
+    },
+    "usr/lib/firmware/isdbtmm.b03": {
+      "bytes": 152,
+      "sha256": "1fba1d16b7800a1484b49f41cab6dccb174bd83bf208f107ac14df1f75e63a4f"
+    },
+    "usr/lib/firmware/isdbtmm.mdt": {
+      "bytes": 6748,
+      "sha256": "e15701674abf02ece0f4859e717266616ad08b0b4bc8906b6b8cbf7779b5d1ab"
+    },
+    "usr/lib/firmware/keymaste.b00": {
+      "bytes": 180,
+      "sha256": "e847a87b3c2c8a81612c0e45204ef34ad4d941484305a08821d5527b3751eb1a"
+    },
+    "usr/lib/firmware/keymaste.b01": {
+      "bytes": 6568,
+      "sha256": "7b6fe51a937534bc3158b0c1cd0d514bdd9ca09658bda368aa13e3d845b6d4d2"
+    },
+    "usr/lib/firmware/keymaste.b02": {
+      "bytes": 19924,
+      "sha256": "323e9b3191bacfdc10996e29ec33c5762060ea3e8f560388b5bf18b3d4a4e986"
+    },
+    "usr/lib/firmware/keymaste.b03": {
+      "bytes": 240,
+      "sha256": "145d24d815a0159d9b95b8d77b374678f4e99aa0311474d4075aa5728ad6090f"
+    },
+    "usr/lib/firmware/keymaste.mdt": {
+      "bytes": 6748,
+      "sha256": "ed7abbe122db5d4df202ec4f9e4cecbaea30094e3ac783564154e87001d267c0"
+    },
+    "usr/lib/firmware/leia_pfp_470.fw": {
+      "bytes": 1156,
+      "sha256": "cb7274d7966b02540895f4399e8567faecbb9503d6d95332046412fcd8b0710e"
+    },
+    "usr/lib/firmware/leia_pm4_470.fw": {
+      "bytes": 9220,
+      "sha256": "d99151ad14fce57f9af4f5d80683a837179b9ea2195a7ddae390cd3cb56fb276"
+    },
+    "usr/lib/firmware/mba.mbn": {
+      "bytes": 225984,
+      "sha256": "fc35db784c3bd1a32c329e635c2035c1fad2ff3f85766d5b320af3fd02fad5dc"
+    },
+    "usr/lib/firmware/modem.b00": {
+      "bytes": 916,
+      "sha256": "b730ca6c3238d9b50c400e617c378a31e0864df83a0f81a79725c7b6b7b9e685"
+    },
+    "usr/lib/firmware/modem.b01": {
+      "bytes": 7304,
+      "sha256": "11f4bfa38b24316e0de911fe634b74d343f3dd4b66a9cf60ac9842c533b7406b"
+    },
+    "usr/lib/firmware/modem.b02": {
+      "bytes": 4212,
+      "sha256": "5baeb3ecfabd87477c2bcf73d95bd0060abe34de3854f7a79514659dc528d3d9"
+    },
+    "usr/lib/firmware/modem.b03": {
+      "bytes": 5376,
+      "sha256": "e5de309f5ef2a62e799302c8b6349e5eadc39be00983b349a4298a20ae21b4d5"
+    },
+    "usr/lib/firmware/modem.b04": {
+      "bytes": 139264,
+      "sha256": "cd248e1cc2c0a9b30154d49ca21c8cbe35098927e06f6411b863bafdb5ce0c15"
+    },
+    "usr/lib/firmware/modem.b05": {
+      "bytes": 81920,
+      "sha256": "f11fe57879fd7c652026a11e04797b4de1ce0aa391927ef62b54c1a4ac9fb2eb"
+    },
+    "usr/lib/firmware/modem.b08": {
+      "bytes": 169424,
+      "sha256": "109d89e7f040e701747bdbd2f12cb78f77f1e82d4cee0d81c3a52f5313ab85d1"
+    },
+    "usr/lib/firmware/modem.b10": {
+      "bytes": 48704,
+      "sha256": "6fb880db6396cfb4ba26a930ffbed34f7d123f71d1dca7047f3dd484aa443460"
+    },
+    "usr/lib/firmware/modem.b11": {
+      "bytes": 46344,
+      "sha256": "94be2198940b92ed7b47d6c3bf5c84cc79553bb291dc7f66b19c060906f20abc"
+    },
+    "usr/lib/firmware/modem.b13": {
+      "bytes": 99508,
+      "sha256": "f29e828aa637e1cd5ec9829a7ca5e00dc656da4f93c385b05f1ca3e563e8d06c"
+    },
+    "usr/lib/firmware/modem.b14": {
+      "bytes": 114580,
+      "sha256": "adb8eef1c478927b228d1c38d5713dfd933f0c8864aec98eb550148b89e4053b"
+    },
+    "usr/lib/firmware/modem.b15": {
+      "bytes": 1657224,
+      "sha256": "9e2fa93eb01f47c86a7114fd5060314ef93b8e4a813c686def1a306100bd1010"
+    },
+    "usr/lib/firmware/modem.b16": {
+      "bytes": 17214640,
+      "sha256": "290893907f256e05ec822edffb0ba54bc50f2e4014c0ec2c6b66ce5a16368778"
+    },
+    "usr/lib/firmware/modem.b17": {
+      "bytes": 663520,
+      "sha256": "cc3635fbbf00db873bc4aa1d94edcef4dca25ca93dcd334f05ed4b0c53c1b34c"
+    },
+    "usr/lib/firmware/modem.b18": {
+      "bytes": 6701136,
+      "sha256": "26a08a3a3d21a104ab21b3f54e8536985a55d75e593c42a0ca3a2e8a59ca4d54"
+    },
+    "usr/lib/firmware/modem.b19": {
+      "bytes": 3060360,
+      "sha256": "a06257998009caa4a01319a1b548f7d4b38018331be5f78c0c46c85c0b66c957"
+    },
+    "usr/lib/firmware/modem.b22": {
+      "bytes": 75592,
+      "sha256": "e92ed951d24eefd00c61903dcd2cbaae1adc9955b349f1d6ed0d8a2ca7443dca"
+    },
+    "usr/lib/firmware/modem.b23": {
+      "bytes": 422110,
+      "sha256": "4f844723abb3d214a8b523af405719fa8be1d4eff8b08823f6a2224322c53b6c"
+    },
+    "usr/lib/firmware/modem.b24": {
+      "bytes": 9071604,
+      "sha256": "b9c6750eaa055d35cabc111f3ec1395dc32e8c6cc36aae402c66f9c9c00f2e48"
+    },
+    "usr/lib/firmware/modem.b25": {
+      "bytes": 244340,
+      "sha256": "c4dc84e908aa60f4dfc515fb1f26b8cf16b10bfaa4c92c6cfe9293045eec7b3a"
+    },
+    "usr/lib/firmware/modem.mdt": {
+      "bytes": 8220,
+      "sha256": "c017d4d6bb7771e2e7b63db87a25908b518b2d8366031c24ac1ebb76f44f3650"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/apac/airtel/commerci/mcfg_sw.mbn": {
+      "bytes": 11092,
+      "sha256": "9c59d08128586d6515ca0201ad5af836e7771796e6b113093284d6ba0dce7af8"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/apac/dcm/commerci/mcfg_sw.mbn": {
+      "bytes": 19716,
+      "sha256": "4244d315c72c4e5020d7f2598991f13c4d840703e6064b2e3e255b857284e917"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/apac/kddi/commerci/mcfg_sw.mbn": {
+      "bytes": 27484,
+      "sha256": "a1d0638b483a0e521fa36d3d55d7424e1e22f1c19947cc798daa8e1b57bf53cc"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/apac/reliance/commerci/mcfg_sw.mbn": {
+      "bytes": 25200,
+      "sha256": "fa4d5948fc7c1eb027baecee9c71fe38f0f86335090ecf29e1be1f4c05f2f60f"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/apac/sbm/commerci/mcfg_sw.mbn": {
+      "bytes": 9812,
+      "sha256": "80af83a9ce1476a9985e6d5131fded6fe99be25d76d9a5ad6c713026f76deebf"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/dsds/comb_att/mcfg_sw.mbn": {
+      "bytes": 23264,
+      "sha256": "384ebf399688c7cff70faf16f95e5b9a53654118b1a2f4af7d49298ade1e125a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/dsds/commerci/mcfg_sw.mbn": {
+      "bytes": 35724,
+      "sha256": "b8bd7f903c59246b5fa2c41264dcdca44dee947af03625c5eb368d775adc9437"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/dsds/eps_only/mcfg_sw.mbn": {
+      "bytes": 23196,
+      "sha256": "099eb33c0ae0d8053b64cb8fe15febc709d08628a86ea569161126659dc0e062"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/dsds/lab_conf/mcfg_sw.mbn": {
+      "bytes": 28588,
+      "sha256": "cb460934dfe03f19dde9a19d6c50b6d0896d0fad587e16e556836eba0e10e523"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/dsds/lab_nsio/mcfg_sw.mbn": {
+      "bytes": 28592,
+      "sha256": "2cb2d70388421401db91dc334f024cf11c712f687eca8486a75379f04ae8f8e6"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/ss/comb_att/mcfg_sw.mbn": {
+      "bytes": 23064,
+      "sha256": "45b3637e51b193d350b04a29d145f194cf72f150c1c07ba761da71751fe109c5"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 31760,
+      "sha256": "97620192830c8fd66d2bfc063d8d317b3a20de5b2800557e0258290bfe8b42b3"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/3csfb/ss/eps_only/mcfg_sw.mbn": {
+      "bytes": 23056,
+      "sha256": "81921b032b9b197a4adb040810cdb5b9c9f550a00bfe0caf79615f1afd0e11fe"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/dsds/com_atta/mcfg_sw.mbn": {
+      "bytes": 23204,
+      "sha256": "1ead4d900c170facfa571dc3f8c1ecca85ad474ee8f8c3943e04ded28e25be74"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/dsds/comb_att/mcfg_sw.mbn": {
+      "bytes": 23264,
+      "sha256": "572e31c494ad0579cddc84a08d4cc7adf2d4654abf74517a110ba92893eab084"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/dsds/commerci/mcfg_sw.mbn": {
+      "bytes": 43984,
+      "sha256": "dba8e2f3d1d445861840c88285fc74cc554af25ce44c5dbf28526042b415f0d4"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/dsds/eps_only/mcfg_sw.mbn": {
+      "bytes": 23196,
+      "sha256": "836b50381a9404f8e51cefb8ee1b9e92b2c23a85937d7c67090640b92a1ba76a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/dsds/lab_conf/mcfg_sw.mbn": {
+      "bytes": 28588,
+      "sha256": "353856f0c47100bde8b2580395c4b0e8c0a42dda879c5343743c43d530e3feab"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/dsds/lab_nsio/mcfg_sw.mbn": {
+      "bytes": 28588,
+      "sha256": "01171e30d0c55b6b3abc95ba2ec437b2e8a1e25549cec1282a086a2673ad1c9d"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/ss/com_atta/mcfg_sw.mbn": {
+      "bytes": 23004,
+      "sha256": "c254b27ef8a30b4c0b46f3e2f1cfd640ecaae7bb430452a79838790062e8a2ff"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/ss/comb_att/mcfg_sw.mbn": {
+      "bytes": 23064,
+      "sha256": "7a18c070780dc92233249bb803a75d389e0e9ad3edfac8687c1908c142d1ca74"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 40580,
+      "sha256": "37dd5627c6421e72781c461e07e9b52fcb3c2b996e262dfce2b88d315fb3aa25"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/csfb/ss/eps_only/mcfg_sw.mbn": {
+      "bytes": 23056,
+      "sha256": "3ed3d3b8f88848e506c68af430ab74695d465cd4774e8ec3caea98b337694ece"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/dsda/com_atta/mcfg_sw.mbn": {
+      "bytes": 26260,
+      "sha256": "1b83628a1ea05abeb7282792872188bee332ed9b8f5f09ebd82b129a9f9b2d4b"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/dsda/comb_att/mcfg_sw.mbn": {
+      "bytes": 26320,
+      "sha256": "0a21c2db8f01518b7e1adf517cfd99bf6947dd219ebcf5cf8795c687479f19d2"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/dsda/commerci/mcfg_sw.mbn": {
+      "bytes": 62492,
+      "sha256": "12e5dea604ae0990c5f5d5b9e06073930fec24e1bce8fbff8fd9737d1d5c9173"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/dsda/eps_only/mcfg_sw.mbn": {
+      "bytes": 40968,
+      "sha256": "61ab68af54e7c6abebe3cc85177ac8fa082cfca64651d8ffe2a7c1ba74f7da97"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/ss/com_atta/mcfg_sw.mbn": {
+      "bytes": 23220,
+      "sha256": "86bc24898c367b492f0d16531a4a9c69959e88b411649667c127ce34a9363188"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/ss/comb_att/mcfg_sw.mbn": {
+      "bytes": 23268,
+      "sha256": "7761b532c0faeb3244580b0f4a6e66c3bcf5d554cd1f26f59abd70dafd9698e4"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 47532,
+      "sha256": "23a07c2fcc9538142be0b5c2c92b2c838911d40df7098fc1028647b84669e1d4"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cmcc/sglte/ss/eps_only/mcfg_sw.mbn": {
+      "bytes": 26764,
+      "sha256": "06930394c636ed0c4104a3798cda7682bf3558c3f16b4c56f5d7e5213436d440"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/3g/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 22524,
+      "sha256": "08cb573caf7886f727de7f3a6f3aa9d3e4eaede5cb8aa8491475458f29490c79"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/cg/dsda/commerci/mcfg_sw.mbn": {
+      "bytes": 28312,
+      "sha256": "2444463ddf140f39dbc188e1652ab074e651ffc8602e580a80b27d70a90569c2"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/cg/dsds/commerci/mcfg_sw.mbn": {
+      "bytes": 25584,
+      "sha256": "75bc47df18f3840490ce25b301fccdd566e24ce2d0236276c084687bddcfe237"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/srlte/dsds/commerci/mcfg_sw.mbn": {
+      "bytes": 38996,
+      "sha256": "91658834362d129c1e032ddaae54f4524819b01b4f6acfdcdf5f52cd64a19930"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/srlte/dsds/test/mcfg_sw.mbn": {
+      "bytes": 38668,
+      "sha256": "4c10937565872fb628485995f843062cbcc1c3144d3132f5494c0f896f3a4dc4"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/srlte/dsds/test_eps/mcfg_sw.mbn": {
+      "bytes": 36720,
+      "sha256": "97e553b96d219753b17d96c36f78bb5b36ca49fdd8397322252ae7c1d9cdc06a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/srlte/dsds/test_no_/mcfg_sw.mbn": {
+      "bytes": 36720,
+      "sha256": "578d90ee4a33ba483a96bf5140aedde8484693f1b6fd1a3e578161529f64d42a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/srlte/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 25016,
+      "sha256": "a129f4e3abafb4e99a5d410eefc10ea57cad398dc3d36808eb279935ebd6e6ff"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/srte/dsds/cta/mcfg_sw.mbn": {
+      "bytes": 39048,
+      "sha256": "0f10bec81ec08ad973d391244af0df3811007a7134b753d07428948da14b96a8"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/svlte/dsda/commerci/mcfg_sw.mbn": {
+      "bytes": 40740,
+      "sha256": "56feaf8826ea48f6c7c91723f85218e02863fc103487c282e64963a7e02e1b80"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/svlte/dsda/test/mcfg_sw.mbn": {
+      "bytes": 43268,
+      "sha256": "55f39b1ff316f6e08c9fa2e76575b4e1684c70f0d174af91feee16f4662b9bde"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/svlte/dsda/test_eps/mcfg_sw.mbn": {
+      "bytes": 41036,
+      "sha256": "6b3b2f6d1566411618451999dc4fb333c8902fba2727d609fe4e52a6da7b2f9e"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/svlte/dsda/test_no_/mcfg_sw.mbn": {
+      "bytes": 41028,
+      "sha256": "47c43c4ffa34b817086e17f49601eff618d3a0c318a88aa5f3d0221376d400c9"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/ct/svlte/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 15184,
+      "sha256": "94546832aeb45aa8ecab051c69e1c5e2c51173a810abe1ff562395d88ec0aa46"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cu/csfb/drds/commerci/mcfg_sw.mbn": {
+      "bytes": 12968,
+      "sha256": "be3b8b028ae236130e865441da57c76a3af448916b47fac1d87e692cff06c23e"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cu/csfb/dsda/commerci/mcfg_sw.mbn": {
+      "bytes": 12788,
+      "sha256": "fd1da5bd938d805554f4852a5c1bdf62866ff2077db53656d3ab478b2a123215"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cu/csfb/dsds/commerci/mcfg_sw.mbn": {
+      "bytes": 23124,
+      "sha256": "1bb3d68725cae8a4e4f5b2371503e39426b1e78c9445e01d6081848ab30a5433"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/china/cu/csfb/ss/commerci/mcfg_sw.mbn": {
+      "bytes": 18964,
+      "sha256": "c3fdbc511081f52686839c13496e7101783bdc3ecc38416d44803f73bd7e4e49"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/common/default/default/mcfg_sw.mbn": {
+      "bytes": 8344,
+      "sha256": "d5250106d73e6cb1ed9f51ee6aa7c8bbc1723fea69e29106550ad6650c2aa822"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/common/row/gen_3gpp/mcfg_sw.mbn": {
+      "bytes": 23020,
+      "sha256": "faadf4f74dad4aa27fbea433b6a542324a7a17a1d20a856936891562af1030b3"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/common/us_cellu/commerci/mcfg_sw.mbn": {
+      "bytes": 13796,
+      "sha256": "4f51a459476d0ec01499f6eed4e0536b1db6c31e139a1706c3266640c5062e4a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/common/w_one/commerci/mcfg_sw.mbn": {
+      "bytes": 26940,
+      "sha256": "f92f7606ef4db94f34f21a41578531cd6f9c103582293a1d68efdad253fbf85c"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/eu/ee/commerci/mcfg_sw.mbn": {
+      "bytes": 24076,
+      "sha256": "ada96077b29d427dd06764bdd539c37adbf06af169c1f02c09dd2c0b69a00a0a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/amx/non_volt/mcfg_sw.mbn": {
+      "bytes": 10212,
+      "sha256": "4433df2359299315fc25d128ea73a4449c8ddc27f541f48b0b4ce7d0809bf4b0"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/att/3g/mcfg_sw.mbn": {
+      "bytes": 17708,
+      "sha256": "2de3b98495c197f0c2c2808f3fed5d07c051017313e8c9fcd1c9ca3894e17002"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/att/volte/mcfg_sw.mbn": {
+      "bytes": 25836,
+      "sha256": "4e43f2af66f85e3f5a0eab61d87eaae7e4c3aee061e55aa6f4d7c8c1126a1bd2"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/sprint/ecsfb/mcfg_sw.mbn": {
+      "bytes": 30264,
+      "sha256": "f20b0aeb79abf5622394a7449cb6aa505ad4324a7bc7a524ad68112ac56ea00a"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/tmo/nov_comm/mcfg_sw.mbn": {
+      "bytes": 26712,
+      "sha256": "e6d639c1303d94c751d7bbecf1f7b665c240a04b155f28d11c3e8d970385c5b1"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/tmo/volte_co/mcfg_sw.mbn": {
+      "bytes": 27652,
+      "sha256": "f691a735effdfa66b90072af9c1f742a33edae2f86931cbbd32929d9b6b46e03"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/verizon/1xsrlte/mcfg_sw.mbn": {
+      "bytes": 41444,
+      "sha256": "d36ef717a56b0644352a69cae3009a32c8faedd4e18c2c6d32bb5f6c296df509"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/verizon/hvolte/mcfg_sw.mbn": {
+      "bytes": 40840,
+      "sha256": "05eac8be71f390fc29a5673b3c2acd8f4dc6d7c85d417763d87f6e5ed11c9031"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/na/verizon/svlte/mcfg_sw.mbn": {
+      "bytes": 29264,
+      "sha256": "8f44e02b5b87cf4585b799267f4afe83ad20d054340a9ebe84c1ae0cc8767770"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/sa/brazil/commerci/mcfg_sw.mbn": {
+      "bytes": 9300,
+      "sha256": "68f6572cd4b6dfc41fc02dd2864abceb03ee0eaca3ced76931d7aefa3dedb576"
+    },
+    "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/sea/smartfre/commerci/mcfg_sw.mbn": {
+      "bytes": 23388,
+      "sha256": "fd6f857ffb379e134fa748319dbed3bc0962a73007a44992782a374dc45fff0c"
+    },
+    "usr/lib/firmware/playread.b00": {
+      "bytes": 180,
+      "sha256": "50116c723acbf71040dc1c70c049e796053c16e00bbe4a29cbb6be77f5a35d69"
+    },
+    "usr/lib/firmware/playread.b01": {
+      "bytes": 6568,
+      "sha256": "45cd98305a826dab874ecc359562abb4826eec96f5141b1789a78bdf616e9796"
+    },
+    "usr/lib/firmware/playread.b02": {
+      "bytes": 126620,
+      "sha256": "2e1992bf7018de778f170390a57b8dff6966f0e9a08f92bb0771dfdab6998d0f"
+    },
+    "usr/lib/firmware/playread.b03": {
+      "bytes": 472,
+      "sha256": "7fa2ac530d541bd9dec47d887c04810dab57af71267c6d67c52f3362528b62dc"
+    },
+    "usr/lib/firmware/playread.mdt": {
+      "bytes": 6748,
+      "sha256": "5d7f737ac968f92dbe61a75590c451f544fa8481ae02b4bc393c6cbe5074f152"
+    },
+    "usr/lib/firmware/qcom/a225_pfp.fw": {
+      "bytes": 1156,
+      "sha256": "a3f169a7c873c8895d4bf0d4cc0ef3f3a83e33bd1b5a0e26eed67cde187f491c"
+    },
+    "usr/lib/firmware/qcom/a225_pm4.fw": {
+      "bytes": 9220,
+      "sha256": "b35674bf10c0e4235b8642e4bf995aa05758b349872c174123dab6ad0635c4c7"
+    },
+    "usr/lib/firmware/qcom/a225p5_pm4.fw": {
+      "bytes": 9220,
+      "sha256": "096a8abaf484e74a4f084d3cdd396cc2809d7f89cee3f25645a629a845ea37cf"
+    },
+    "usr/lib/firmware/qcom/a300_pfp.fw": {
+      "bytes": 1156,
+      "sha256": "b6e66400d46d52dc343d370b94362d564a765994bda47dc026961dd47a9ca7a9"
+    },
+    "usr/lib/firmware/qcom/a300_pm4.fw": {
+      "bytes": 9220,
+      "sha256": "f78c57e879e96a2c0ceeea31dbd30f7f1d4526f9c876e80481c654f08daaecd3"
+    },
+    "usr/lib/firmware/qcom/a330_pfp.fw": {
+      "bytes": 2212,
+      "sha256": "e4ee76b287961f56e6a606ed5baf7127d9fd9a0d421b516af32fa655f1fdb5de"
+    },
+    "usr/lib/firmware/qcom/a330_pm4.fw": {
+      "bytes": 9220,
+      "sha256": "2057bff39ad2ab0b4d4ad755c52bf9d0c139293aa823bde992094ce27304b000"
+    },
+    "usr/lib/firmware/qcom/a420_pfp.fw": {
+      "bytes": 4292,
+      "sha256": "7b1f95aba802b7374baf06eb1c442df5b4ffdf58200b28c09abe69e32621e13f"
+    },
+    "usr/lib/firmware/qcom/a420_pm4.fw": {
+      "bytes": 9556,
+      "sha256": "954a82ec1f86588821c9b5a78b72c7838be961759581b90a69460b2cb86d7627"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.b00": {
+      "bytes": 212,
+      "sha256": "f7091f597f079788d45b1a907b7a3a6ccbff9ba4cffba9d6d32356eda7086f7c"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.b01": {
+      "bytes": 6600,
+      "sha256": "1a6f156bd5ad0634b6767f5c3f5b7ca41a4670eb0df8f30146b6947e8e3f5008"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.b02": {
+      "bytes": 940816,
+      "sha256": "d41c82ed8ac155a13e9d8c2cbb3644fd8b1b55fbf14855c0d06d63fca9b2307a"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.b03": {
+      "bytes": 5472,
+      "sha256": "cec504ec572808942134d41f1f072ac3d60fdfe0387afb770002f90fb5e7f1e2"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.b04": {
+      "bytes": 32,
+      "sha256": "43b09596e1496809aaa964b34c146580f0566c86bc9d7218a1288fd15fb93424"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.mbn": {
+      "bytes": 958608,
+      "sha256": "01d09fd56c37755ba5581d315ddbff9fabdc2c10c9d7f6fd16945962034b6263"
+    },
+    "usr/lib/firmware/qcom/venus1.8/venus.mdt": {
+      "bytes": 6812,
+      "sha256": "c852ea210be8d57aeb805565e5b4125f5e566a2cb2232c1a9f429f542f03bf83"
+    },
+    "usr/lib/firmware/venus.mbn": {
+      "bytes": 968528,
+      "sha256": "17e7d646a6cb38155133088e24a80cd130a638e2f882de23b2df22a5d79f8619"
+    },
+    "usr/lib/firmware/wcnss.b00": {
+      "bytes": 436,
+      "sha256": "a42e8ef9ac1660d3f7fdc16a5c661648fc784ec4f31763cfc3b9863b93c8c057"
+    },
+    "usr/lib/firmware/wcnss.b01": {
+      "bytes": 6824,
+      "sha256": "89c9e3eb741b28466fdd2d282334449a0eca0b28193019e67dbfa4ebb99dc7bd"
+    },
+    "usr/lib/firmware/wcnss.b02": {
+      "bytes": 13084,
+      "sha256": "f8cf95d02aa19b0f82444c43a3f078016a057a750faa61039b4165dbe1ecce02"
+    },
+    "usr/lib/firmware/wcnss.b04": {
+      "bytes": 61440,
+      "sha256": "fb83cd34abcc90816316788a819620498f2e280fbeddaaf425e6fccabc514662"
+    },
+    "usr/lib/firmware/wcnss.b06": {
+      "bytes": 3081172,
+      "sha256": "c7a0e9dc2935bff5d59d2e2477e5f2adbcd8e85c8a0af2f9c03ea398c07522ac"
+    },
+    "usr/lib/firmware/wcnss.b09": {
+      "bytes": 52,
+      "sha256": "7955cb2de90dd9efc6df9fdbf5f5d10c114f4135a9a6b52db1003be749e32f7a"
+    },
+    "usr/lib/firmware/wcnss.b10": {
+      "bytes": 655360,
+      "sha256": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee"
+    },
+    "usr/lib/firmware/wcnss.b11": {
+      "bytes": 43576,
+      "sha256": "cc89471eb8324938d57c9965f726e571b2f236e6698f1546a171aa0537e34696"
+    },
+    "usr/lib/firmware/wcnss.mdt": {
+      "bytes": 7260,
+      "sha256": "8241f3aa8ba3aa90e8add1aef11b718a9a1aaf99e6ac053ef4c964ecc84ad6d5"
+    },
+    "usr/lib/firmware/widevine.b00": {
+      "bytes": 180,
+      "sha256": "32d16bf12f0de23f288d9008699cfd30cd08aa15b5ae275fa6af59fa508ba571"
+    },
+    "usr/lib/firmware/widevine.b01": {
+      "bytes": 6568,
+      "sha256": "b6f5f077e352842bbae85c1cd246ed9a9ab496c66bd8cdd5fabc9d1106597673"
+    },
+    "usr/lib/firmware/widevine.b02": {
+      "bytes": 161668,
+      "sha256": "2394d4e3409f722502bc6a772984569d423daa3a02451e73e5b18945c6e8f2c3"
+    },
+    "usr/lib/firmware/widevine.b03": {
+      "bytes": 964,
+      "sha256": "fcce6db773a4f96ebc707c999531483c3cf7cf50320e4edb44dd85694f3a3623"
+    },
+    "usr/lib/firmware/widevine.mdt": {
+      "bytes": 6748,
+      "sha256": "bc277b61a7df00db6ec0d6ebce51343b8b3ff70b13f879af4b7ea26dc94988d0"
+    },
+    "usr/lib/firmware/wlan/prima/WCNSS_cfg.dat": {
+      "bytes": 11290,
+      "sha256": "de4f886d1ac20fd08326e01f782186b5e3519cf91d851844c5aaaf675fa37a47"
+    },
+    "usr/lib/firmware/wlan/prima/WCNSS_qcom_cfg.ini": {
+      "bytes": 7416,
+      "sha256": "d98d6bbe3fd7384b1ebcd9f001334d0956337e96eb0641f990f6d201156b0706"
+    },
+    "usr/lib/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin": {
+      "bytes": 29816,
+      "sha256": "6ba555d479ab57d3cf093c997a8f29e479e4a279c6dd0480ed825f3cfdeb1c48"
+    },
+    "usr/share/uz801/modem-firmware-profile.json": {
+      "bytes": 3369,
+      "sha256": "73d2bc69e50a342beae4a491f25a7e3c410995fdf99c3fbe0b9eb0da1f310272"
+    }
+  }
+}

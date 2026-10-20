@@ -1,0 +1,19 @@
+name: Verify published board dependencies
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event_name != 'release' || startsWith(github.event.release.tag_name, 'board-dependencies-')
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        board: [uz801-v2.1, uz801-v3.0]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify hash, package identity and native dpkg installation
+        run: bash tools/ci_check_dependencies.sh '${{ matrix.board }}'

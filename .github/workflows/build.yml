@@ -1,72 +1,109 @@
-name: Build UZ801 v3.0 packaged baseline
+name: Build UZ801 Debian images
 on:
-  repository_dispatch:
   workflow_dispatch:
     inputs:
-      arch:
-        description: "Target architecture"
+      board:
+        description: Board profile
         required: true
-        default: 'arm64'
+        default: both
         type: choice
-        options:
-          - arm64
+        options: [both, uz801-v2.1, uz801-v3.0]
+      publish:
+        description: Publish built bundles as a prerelease (new-image hardware acceptance remains pending)
+        required: true
+        default: false
+        type: boolean
+  repository_dispatch:
+    types: [build-images]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build:
-    name: Build UZ801 v3.0 packaged baseline
+  select:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.boards.outputs.matrix }}
     steps:
-      - name: Prepare
+      - uses: actions/checkout@v4
+      - id: boards
+        env:
+          REQUESTED_BOARD: ${{ inputs.board || github.event.client_payload.board || 'both' }}
         run: |
-          sudo apt-get -y update
-          sudo apt-get -y install curl wget debootstrap binfmt-support qemu-user-static android-sdk-libsparse-utils
+          python3 - <<'PY'
+          import json,os
+          lock=json.load(open('config/dependencies.lock.json'))
+          requested=os.environ['REQUESTED_BOARD']
+          boards=list(lock['boards']) if requested=='both' else [requested]
+          if not boards or any(board not in lock['boards'] for board in boards):
+              raise SystemExit('Unsupported board profile')
+          matrix={'include':[{'board':board,'product':lock['boards'][board]['product']} for board in boards]}
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              output.write('matrix='+json.dumps(matrix,separators=(',',':'))+'\n')
+          PY
 
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+  dependencies:
+    needs: select
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.select.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify selected deb and install into disposable root
+        run: bash tools/ci_check_dependencies.sh '${{ matrix.board }}'
 
-      - name: Prepare repository
-        run: git config --global --add safe.directory "$(pwd)"
-
-      - name: Build
+  build:
+    needs: [select, dependencies]
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.select.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install native ARM64 build dependencies
         run: |
-          cd rootfs
-          sudo ./build.sh "${{ inputs.arch || 'arm64' }}"
-          sudo xz rootfs.img
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: uz801-v3.0-debian
-          path: |
-            aboot/*.mbn
-            kernel/*.img
-            rootfs/rootfs.img.xz
-
-      - name: Generate release tag
-        id: version
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends curl wget debootstrap android-sdk-libsparse-utils rsync xz-utils e2fsprogs python3
+      - name: Build selected Debian and verify rootfs contents
+        run: sudo bash rootfs/build.sh arm64 '${{ matrix.board }}'
+      - name: Compress and package board-specific bundle
         run: |
-          NAME=$(echo "UZ801 v3.0 Debian $(cat rootfs/debian_version)")
-          TAG_NAME=uz801-v3.0-debian-$(cat rootfs/debian_version)-${{ github.run_number }}-${{ inputs.arch || 'arm64' }}
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
-          echo -e "- Bootloader: $(cat aboot/ver.txt)\n$(cat rootfs/info.md)\n\n$(git log -1 --format=%B)" > release_notes.md
-          echo "NAME=$NAME" >> $GITHUB_OUTPUT
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_OUTPUT
-
-      - name: Releases
-        uses: softprops/action-gh-release@v2
+          sudo xz -T0 -6 rootfs/rootfs.img
+          sudo chown -R "$(id -u):$(id -g)" rootfs kernel
+          python3 tools/package_image.py --board '${{ matrix.board }}' --build-dir rootfs --build-id '${{ github.run_number }}-r${{ github.run_attempt }}' --output-dir dist
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.version.outputs.NAME }}
-          body_path: release_notes.md
-          tag_name: ${{ steps.version.outputs.TAG_NAME }}
-          files: |
-            aboot/*.mbn
-            kernel/*.img
-            rootfs/rootfs.img.xz
+          name: ${{ matrix.product }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: uz801-*-debian
+          merge-multiple: true
+          path: dist
+      - name: Publish explicit build prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          SOURCE_COMMIT: ${{ github.sha }}
+          RELEASE_TAG: debian-bookworm-arm64-${{ github.run_id }}-r${{ github.run_attempt }}
+        run: |
+          cat > release-notes.md <<'EOF'
+          Board-specific Debian 12 arm64 build bundles.
+
+          Each zip contains boot.img, rootfs.img.xz, optional-reviewed aboot.mbn, image-manifest.json and SHA256SUMS. Verify the board and manifest before use. Preserve GPT and per-device NV. Use Python EDL USB BULK only.
+
+          Package inputs, source checks and build checks are automated. Physical cold-boot/SMS acceptance for these newly built complete images remains pending; live maintenance-profile acceptance is separate evidence. Data roaming and data autoconnect are not enabled by the build.
+          EOF
+          gh release create "$RELEASE_TAG" dist/* --repo "$REPOSITORY" --target "$SOURCE_COMMIT" --title 'UZ801 Debian 12 arm64 board builds' --notes-file release-notes.md --prerelease

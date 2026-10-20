@@ -3,7 +3,7 @@ set -eu
 
 LANG_TARGET=en_US.UTF-8
 PASSWORD=ChangeMe
-NAME=uz801v3
+NAME="${UZ801_HOSTNAME:-uz801}"
 PARTUUID=a7ab80e8-e9d1-e8cd-f157-93f69b1d141e
 
 cat <<EOF > /etc/apt/sources.list
@@ -62,5 +62,6 @@ cat <<EOF >> /tmp/info.md
 EOF
 
 rm -rf /etc/ssh/ssh_host_* /var/lib/apt/lists/*
+truncate -s 0 /etc/machine-id
 apt clean
 exit 0
