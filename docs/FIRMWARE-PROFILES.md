@@ -1,25 +1,25 @@
-# Optional modem firmware profiles
+# Pinned board firmware packages
 
-The default build keeps firmware from the configured dependency package. A different physical board may require another modem executable firmware set. Do not infer suitability from a filename or device-tree model, and do not replace firmware automatically when a modem reports an error.
+## Published inputs
 
-## Pinned profile
+config/dependencies.lock.json is the release build contract. It selects uz801-v2.1-firmware.deb / uz801-v2.1-b04 or uz801-v3.0-firmware.deb / uz801-v3.0-b10 from the immutable board-dependencies-2026.10.20.1 tag. Shared openstick-utils-all.deb is separately hashed. Kernel/boot/headers are fixed to the matched v6.6.92-arm64 release.
 
-`rootfs/firmware-profiles/uz801-v2.1-b04.json` describes the complete B04 modem executable set tested on one user-confirmed UZ801 v2.1 board. It contains filenames, lengths and SHA256 hashes; the binaries and per-device backup evidence stay in the private companion workspace. It includes neither NV nor Wi-Fi calibration. This does not certify every v2.1 variant.
+packaging/manifests contains the exact complete payload contracts. Each new firmware deb has its own Package identity and conflicts with the other board package. The vendor support/WLAN baseline is retained; only the v2.1 modem executable set differs from that baseline. Neither package includes modemst/fsg/fsc partitions or private captures.
 
-The test held the current kernel and physical NV constant. The packaged firmware reported `UZ801_V3.0_21_V01R01B10` and failed to enter normal radio operation. A complete RAM-mounted B04 set retained the expected IMEI and registered with the physical SIM, while physical NV hashes stayed unchanged. The legacy image extraction lineage was audited separately; it was not assumed to be an untouched factory backup.
+## Build
 
-## Build with an explicitly supplied profile
+Use sudo bash rootfs/build.sh arm64 uz801-v2.1 or uz801-v3.0. The selected package is verified before installing it, and every installed firmware file/profile is checked before producing the image. A package with the other board name in staging is an error. Local override directories are rejected by release builds.
 
-From `rootfs/`, set `UZ801_FIRMWARE_PROFILE=uz801-v2.1-b04` and `UZ801_MODEM_FIRMWARE_DIR` to a local directory containing the complete pinned set, then run the existing build normally. The directory must be available to the build process. The tool validates all lengths and hashes before starting the build and applies the selected set after the dependency packages have installed their default firmware.
+Build UZ801 Debian images offers v2.1, v3.0 and both, uses native ARM64 runners, and emits separate board bundle names. Explicit publishing creates a prerelease. Fresh full-image hardware acceptance remains a separate step; no firmware filename alone establishes compatibility.
 
-`packaged` remains the default. The existing release workflow does not fetch or publish the private firmware directory automatically. No new full-image build is implied by a successful live deployment.
+## Packaging and provenance
 
-For offline validation or a staged rootfs, use `tools/firmware_profile.py --profile PROFILE --source DIRECTORY`, optionally with `--root STAGED_ROOTFS`. The installer refuses the host root and permits only modem executable filenames; it records the selected public profile under `/usr/share/uz801/modem-firmware-profile.json`.
+tools/package_firmware.py accepts the hash-pinned legacy vendor deb. For v2.1, additionally provide the full B04 source directory and its pinned profile. The original B04 extraction lineage was independently audited and the resulting complete set was tested while holding kernel and physical NV constant. This does not claim an untouched factory backup or every PCB variant.
 
-## Existing device deployment
+The builder makes deterministic gzip/tar/ar containers, emits package/profile/file manifests, and does not include maintainer scripts. New firmware package data contains the selected complete modem set and the unchanged public vendor support/WLAN files. The Linux WLAN default named WCNSS_qcom_wlan_nv.bin is from the previously public vendor package, not a copied private eMMC NV partition.
 
-`tools/deploy-firmware.py` requires explicit hardware identity, a pinned profile/source, a successful RAM trial report with unchanged physical NV, and a new private backup directory. It verifies the original firmware files below the temporary trial mounts and saves their bytes before interrupting the modem. It then stops the identified modem remoteproc, removes the trial file mounts, installs and checks the normal rootfs files, releases the tmpfs, and restarts normal services.
+## Existing systems
 
-If installation fails after interruption, the deployment record identifies the verified rollback files and the modem should remain stopped for inspection. Do not reboot or flash unrelated partitions to hide a partial installation. The tool never restores NV, enables data roaming, dials data or sends SMS. Registration, a new incoming SMS, reboot and physical power-cycle checks remain separate acceptance steps.
+tools/firmware_profile.py still validates or applies a modem-only set to an explicitly staged rootfs. tools/deploy-firmware.py requires a successful current RAM trial, explicit identity and new private rollback directory before persisting ordinary files. Interrupted installation may use --resume-install only on the same boot with verified rollback, staged files and physical NV evidence. Metadata is transferred as a file for legacy ADB command-length limits.
 
-If the deployment was interrupted during its recorded `installing` phase, `--resume-install` reuses the same private backup directory. It requires the same boot/CID/profile, verifies every rollback file and the pre-trial physical NV audit, and finishes from the verified tmpfs candidate while the modem is stopped. It refuses a changed boot or completed deployment. Profile metadata is transferred as a file to support older ADB daemons with short command limits.
+The deployment tool does not write partitions or enable data. Verify firmware, identity, slot, registration, new SMS, reboot and physical power-cycle separately. Preserve the user's disabled roaming setting.

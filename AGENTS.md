@@ -28,4 +28,4 @@
 - Never run two SIM selectors concurrently. The deployer disables the former `uz801-physical-sim.service` while retaining its files and backing up unit state.
 - Optional application dependencies belong in explicitly requested deployment settings; do not assume SimAdmin is part of the base image.
 - Distinguish source tests, live deployment, a successful image build, reboot verification, cold-boot verification, SMS reception and Internet connectivity. None implies all the others.
-- The build workflow currently runs by manual or repository dispatch and publishes a release. Do not trigger a release accidentally while running checks.
+- The build workflow runs by manual or repository dispatch. Manual publish=true explicitly creates a prerelease; the default publishes Actions artifacts only. Source checks do not publish images. Keep full-image hardware acceptance separate from build success.

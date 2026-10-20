@@ -2,7 +2,9 @@
 
 ## Release gate
 
-Existing-device v3.0 and v2.1 repairs were verified. New full images containing the maintained startup/profile changes have not been published for both variants. Do not perform a fresh full-image installation from an old artifact solely because its name says Debian or UZ801. Stop unless the selected board has a completed build, approved image set, hashes and validation record.
+Existing-device v3.0 and v2.1 repairs were verified. CI now builds separate locked board bundles; newly built complete-image hardware acceptance is still pending. Do not perform a fresh full-image installation from an old artifact solely because its name says Debian or UZ801. Stop unless the selected board has a completed build, approved image set, hashes and validation record.
+
+Current candidates: [dual-board build run 39439771848](https://github.com/theorangeguo/uz801-debian/actions/runs/39439771848) passed and [published both board bundles](https://github.com/theorangeguo/uz801-debian/releases/tag/debian-bookworm-arm64-39439771848-r1). Their manifests explicitly retain pending full-image hardware acceptance. Firmware dependencies are in [board-dependencies-2026.10.20.1](https://github.com/theorangeguo/uz801-debian/releases/tag/board-dependencies-2026.10.20.1).
 
 ## Identify and preserve
 

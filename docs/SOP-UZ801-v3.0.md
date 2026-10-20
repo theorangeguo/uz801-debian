@@ -6,7 +6,7 @@ Read INSTALLATION-SOP.md first. This applies to a tested variant; it does not es
 
 Confirm the physical PCB, CID and expected IMEI in the private device ledger. Back up current NV and GPT before changes. Never put actual device identifiers or NV files into this repository.
 
-Target product name: uz801-v3.0-debian. Target firmware dependency name: uz801-v3.0-firmware.deb. These names do not mean a new validated full-image release currently exists.
+Target product name: uz801-v3.0-debian. Target firmware dependency name: uz801-v3.0-firmware.deb. These names are selected by CI; verify the actual bundle manifest and physical acceptance status.
 
 ## Tested maintenance case
 
@@ -14,4 +14,4 @@ The tested v3.0 case had incompatible NV contents and an unknown IMEI. A candida
 
 Use only that device's private, content-validated NV and a fresh audited recovery plan. A generic DeviceNotReady error is not sufficient to restore NV. If the current system already passes identity, slot, registration and SMS checks, preserve its NV.
 
-For ordinary maintenance, deploy the common selector sources using tools/deploy-modem.py and validate using tools/verify-modem.py. For a fresh image, check the packaged firmware/boot/kernel/DT compatibility and require the full-image release gate. Current default builds use the existing packaged baseline; dependency asset renaming and a new full-image release remain separate work.
+For ordinary maintenance, deploy the common selector sources using tools/deploy-modem.py and validate using tools/verify-modem.py. For a fresh image, check the packaged firmware/boot/kernel/DT compatibility and require the full-image release gate. The build selects uz801-v3.0-firmware.deb from the immutable input lock and fixes its boot/kernel/headers version.
