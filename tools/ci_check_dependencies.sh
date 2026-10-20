@@ -3,7 +3,7 @@ set -euo pipefail
 BOARD="${1:?board required}"
 ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 STAGE=$(mktemp -d)
-trap 'rm -rf -- "$STAGE"' EXIT
+trap 'sudo rm -rf -- "$STAGE"' EXIT
 python3 "$ROOT/tools/build_inputs.py" prepare --board "$BOARD" --packages-only --package-dir "$STAGE/packages"
 PACKAGE="$STAGE/packages/$BOARD-firmware.deb"
 dpkg-deb --info "$PACKAGE"
