@@ -11,7 +11,7 @@ Debian 12 (Bookworm) arm64 image sources for the tested UZ801 v2.1 and v3.0 prof
 
 Both packages are published in [board-dependencies-2026.10.20.1](https://github.com/theorangeguo/uz801-debian/releases/tag/board-dependencies-2026.10.20.1) together with the unchanged shared openstick-utils-all.deb, per-file manifests, profiles and SHA256SUMS. config/dependencies.lock.json pins exact URLs, sizes and SHA256 hashes. The legacy prebuilt-dependencies assets remain for old source revisions; release builds consume the versioned tag.
 
-The v3.0 package preserves the audited vendor baseline. v2.1 uses that same public support/WLAN baseline with the complete B04 modem executable set that passed live-device acceptance. The packages conflict with each other and replace the former vendor package identity; never install both. The public vendor WLAN defaults are not private device partition captures.
+The v3.0 package is the pinned B10 vendor baseline, but the 2026-10-20 test on the confirmed 1797 v3.0 board rejected it at modem enable with DeviceNotReady; do not treat this package as physically accepted. v2.1 uses that same public support/WLAN baseline with the complete B04 modem executable set that passed live-device acceptance. The packages conflict with each other and replace the former vendor package identity; never install both. The public vendor WLAN defaults are not private device partition captures.
 
 ## CI/CD
 
@@ -23,7 +23,7 @@ Each artifact has a distinct product name and contains a zip with boot.img, root
 
 publish=false uploads Actions artifacts only. Explicit publish=true creates a prerelease containing successful bundles. Build/source/package checks do not certify physical boot of a newly built full image; its manifest says hardware acceptance is pending. Do not overwrite GPT or per-device NV when validating an OS image.
 
-Both board builds and publication passed in [run 39439771848](https://github.com/theorangeguo/uz801-debian/actions/runs/39439771848) from source commit `3ae9e9a734145bb3e03972cf4f283a2f09a86458`. The [two complete-image candidate bundles](https://github.com/theorangeguo/uz801-debian/releases/tag/debian-bookworm-arm64-39439771848-r1) are published as a prerelease. Their physical full-image cold-boot/SMS acceptance is pending.
+Both board builds and publication passed in [run 39439771848](https://github.com/theorangeguo/uz801-debian/actions/runs/39439771848) from source commit `3ae9e9a734145bb3e03972cf4f283a2f09a86458`. The [two complete-image candidate bundles](https://github.com/theorangeguo/uz801-debian/releases/tag/debian-bookworm-arm64-39439771848-r1) are published as a prerelease. The v2.1 candidate passed system/first-boot/software-reboot checks. The v3.0 candidate passed system flash/readback/boot checks but its B10 modem was rejected with DeviceNotReady. Neither candidate has complete cold-boot/SMS acceptance.
 
 ## Local build
 

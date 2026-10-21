@@ -15,3 +15,7 @@ The tested v3.0 case had incompatible NV contents and an unknown IMEI. A candida
 Use only that device's private, content-validated NV and a fresh audited recovery plan. A generic DeviceNotReady error is not sufficient to restore NV. If the current system already passes identity, slot, registration and SMS checks, preserve its NV.
 
 For ordinary maintenance, deploy the common selector sources using tools/deploy-modem.py and validate using tools/verify-modem.py. For a fresh image, check the packaged firmware/boot/kernel/DT compatibility and require the full-image release gate. The build selects uz801-v3.0-firmware.deb from the immutable input lock and fixes its boot/kernel/headers version.
+
+## Candidate image result (2026-10-21)
+
+The published `uz801-v3.0-b10` candidate was flashed to the confirmed 1797 board with complete rootfs readback; GPT, boot, aboot and all four NV partitions were preserved. Debian, ADB, IMEI and 145 firmware file hashes passed, but the preflash modem was B08 and the postflash B10 modem returned QMI `DeviceNotReady` and did not register. This candidate is rejected for this board. Do not restore NV to address this result. The complete preflash system rollback and comparison report remain in the private workspace; B08 provenance must be reviewed before creating a new v3.0 package.
