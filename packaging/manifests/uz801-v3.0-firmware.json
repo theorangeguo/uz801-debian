@@ -2,12 +2,12 @@
   "schema_version": 1,
   "board": "uz801-v3.0",
   "package": "uz801-v3.0-firmware",
-  "version": "1.0.0+20261020.1",
+  "version": "1.0.1+20261022.1",
   "filename": "uz801-v3.0-firmware.deb",
-  "sha256": "1a3e270ae055748a3d585fe86111cacf007c162d7c3d294f973ff4855c08feaf",
-  "bytes": 29652948,
+  "sha256": "b0433a9ae33936d5e7f23a0a7fcfdb33499a2d4dc4209ed5b684aac51a28337c",
+  "bytes": 29653276,
   "base_package_sha256": "fdd545e9a5b1d84d471e89be81e85cafebc05a72f293122cb93a72c15a705820",
-  "modem_profile": "uz801-v3.0-b10",
+  "modem_profile": "uz801-v3.0-b08",
   "vendor_wlan_defaults": "Unchanged from the pinned public vendor base; not taken from a private device capture",
   "per_device_nv_included": false,
   "files": {
@@ -85,19 +85,19 @@
     },
     "usr/lib/firmware/mba.mbn": {
       "bytes": 234176,
-      "sha256": "d96cac7157e2a4cdb98d4e1710471ef22395be265aa97c060816e0ab16cfcfec"
+      "sha256": "78732e32845a4fa65da9ee1cb68207ccc53b26e21f8dbf47ac0216d7a7a2b2cd"
     },
     "usr/lib/firmware/modem.b00": {
       "bytes": 916,
-      "sha256": "5b75a53f52a041d44f50d374bf320fc48e8ac064b0c5492c9d7743e898313067"
+      "sha256": "9f01326510aac0fc496ed22fa8f33bbd0477044290c63bb6cb67dde63235c023"
     },
     "usr/lib/firmware/modem.b01": {
       "bytes": 7304,
-      "sha256": "014b78126d59f7bd318e23c3fc93bedf227561ac076185f0a79af6968c141ffe"
+      "sha256": "af44b36312891880a80223b9f198086905f8429735b8ee96573cadde81f36d21"
     },
     "usr/lib/firmware/modem.b02": {
       "bytes": 4212,
-      "sha256": "c6ebfcaf76bcd05b57484cfd8bb7bbeb4c013feb6c047e76824ae01616809710"
+      "sha256": "413f4fe1018f58051fa8d1490b3c100feb6056985814f7715d1ae78b5887d112"
     },
     "usr/lib/firmware/modem.b03": {
       "bytes": 5376,
@@ -137,7 +137,7 @@
     },
     "usr/lib/firmware/modem.b16": {
       "bytes": 19443952,
-      "sha256": "671708185f8702c109c35f2707b7740258e72dd3230d86d742bcf4f5d8559b3a"
+      "sha256": "c3d74d0c893f5b23d222d0103cb8d09277e385c6e4cd5a15c13002cca304d50a"
     },
     "usr/lib/firmware/modem.b17": {
       "bytes": 663520,
@@ -145,15 +145,15 @@
     },
     "usr/lib/firmware/modem.b18": {
       "bytes": 7704704,
-      "sha256": "40a0e9a5f183eb76c37d55cd5e29618f3f2c354adcd6912651657bc35ab3069d"
+      "sha256": "db8f573bbf499c9c62c6321bda0e8fd2d69e9b857e6b86ad2c3d01646f12f143"
     },
     "usr/lib/firmware/modem.b19": {
-      "bytes": 3086408,
-      "sha256": "0aa0f1ec6e2c31fe1683dfa6730222e5a4f46e982663d0c32e9da4d083d65e61"
+      "bytes": 3086120,
+      "sha256": "12f313fb98554b5f54cc989c203c77fd26fecec9358d4dfcf934b6a6dde57329"
     },
     "usr/lib/firmware/modem.b22": {
       "bytes": 76464,
-      "sha256": "4736672191c4f9f104935c62611a6409f2ce487fcb87b9b44f274bb2316f870e"
+      "sha256": "ae07dfc1d30db7cd01ca411dc507b91b1fe5834903bf3418adfdcaf6e1e05841"
     },
     "usr/lib/firmware/modem.b23": {
       "bytes": 503338,
@@ -161,7 +161,7 @@
     },
     "usr/lib/firmware/modem.b24": {
       "bytes": 7902824,
-      "sha256": "59796c8b70661175ff1953df2f46a87062810c58ee971b2eca38f8fc22324c14"
+      "sha256": "6826129feafd2c6823ec18492b7723aa866b1a95cde574a4f2e115f2418f56ed"
     },
     "usr/lib/firmware/modem.b25": {
       "bytes": 773356,
@@ -169,7 +169,7 @@
     },
     "usr/lib/firmware/modem.mdt": {
       "bytes": 8220,
-      "sha256": "8702b2df956475ecf6bcd785466275c16bcea6fa8b35b2f7bc731f439e6ca665"
+      "sha256": "154d12dbd7183ae814c1f665982f197a21be9701c67feed1a81de028d9883c4a"
     },
     "usr/lib/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/apac/airtel/commerci/mcfg_sw.mbn": {
       "bytes": 11092,
@@ -588,8 +588,8 @@
       "sha256": "6ba555d479ab57d3cf093c997a8f29e479e4a279c6dd0480ed825f3cfdeb1c48"
     },
     "usr/share/uz801/modem-firmware-profile.json": {
-      "bytes": 3265,
-      "sha256": "f8aad0fbc4a57125f6672a195de798de16494827bb2f69f2abc63b5e54c0c122"
+      "bytes": 3358,
+      "sha256": "08f11da7224ae89826107d314513c0f693a6c293c14412a20f6aa512bd6f68d3"
     }
   }
 }

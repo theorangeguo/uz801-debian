@@ -7,11 +7,11 @@ Debian 12 (Bookworm) arm64 image sources for the tested UZ801 v2.1 and v3.0 prof
 | Board | Locked firmware package | Modem profile | Image product |
 | --- | --- | --- | --- |
 | v2.1 tested variant | uz801-v2.1-firmware.deb | uz801-v2.1-b04 | uz801-v2.1-debian |
-| v3.0 tested variant | uz801-v3.0-firmware.deb | uz801-v3.0-b10 | uz801-v3.0-debian |
+| v3.0 tested variant | uz801-v3.0-firmware.deb | uz801-v3.0-b08 | uz801-v3.0-debian |
 
-Both packages are published in [board-dependencies-2026.10.20.1](https://github.com/theorangeguo/uz801-debian/releases/tag/board-dependencies-2026.10.20.1) together with the unchanged shared openstick-utils-all.deb, per-file manifests, profiles and SHA256SUMS. config/dependencies.lock.json pins exact URLs, sizes and SHA256 hashes. The legacy prebuilt-dependencies assets remain for old source revisions; release builds consume the versioned tag.
+Both packages are published in [board-dependencies-2026.10.22.1](https://github.com/theorangeguo/uz801-debian/releases/tag/board-dependencies-2026.10.22.1) together with the unchanged shared openstick-utils-all.deb, per-file manifests, profiles and SHA256SUMS. config/dependencies.lock.json pins exact URLs, sizes and SHA256 hashes. The legacy prebuilt-dependencies assets remain for old source revisions; release builds consume the versioned tag.
 
-The v3.0 package is the pinned B10 vendor baseline, but the 2026-10-20 test on the confirmed 1797 v3.0 board rejected it at modem enable with DeviceNotReady; do not treat this package as physically accepted. v2.1 uses that same public support/WLAN baseline with the complete B04 modem executable set that passed live-device acceptance. The packages conflict with each other and replace the former vendor package identity; never install both. The public vendor WLAN defaults are not private device partition captures.
+Both packages retain the same public vendor support/WLAN baseline and install a complete explicitly pinned modem set: B04 for v2.1, B08 for v3.0. The previous v3.0 B10 candidate failed modem enable with DeviceNotReady on the tested board. On 2026-10-22, replacing only its modem executable files with the identified preflash B08 set restored registration on the new Debian system with unchanged kernel and physical NV. File persistence and a user-performed power cycle passed on 2026-10-22: the modem registered from normal rootfs files, NV stayed unchanged, and cellular byte counters remained zero. New incoming SMS and a newly rebuilt B08 full image are not yet accepted. Never install both board packages. The public vendor WLAN defaults are separate from captured device NV.
 
 ## CI/CD
 
@@ -50,4 +50,4 @@ Initial image account remains root / ChangeMe. Verify actual USB addressing and 
 
 Run python3 -m unittest discover -s tests -v and bash -n rootfs/build.sh rootfs/chroot.sh tools/ci_check_dependencies.sh. The source-check workflow does not publish images. Verify published board dependencies also checks the public packages through native dpkg.
 
-tools/package_firmware.py builds deterministic debs from the SHA256-pinned public vendor base; v2.1 additionally requires the complete B04 profile/source. It accepts firmware executables/support files only, creates distinct mutually exclusive package identities and emits per-file manifests. Firmware binaries remain Release assets, not Git objects. See docs/FIRMWARE-PROFILES.md.
+tools/package_firmware.py builds deterministic debs from the SHA256-pinned public vendor base. Both boards require an explicit complete repository-pinned profile/source (v2.1 B04, v3.0 B08); silently retaining the vendor B10 modem baseline is rejected. It accepts firmware executables/support files only, creates distinct mutually exclusive package identities and emits per-file manifests. Firmware binaries remain Release assets, not Git objects. See docs/FIRMWARE-PROFILES.md.

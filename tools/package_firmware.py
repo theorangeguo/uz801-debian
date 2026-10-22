@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build deterministic board firmware debs from audited executable-only sources.
 
-The vendor base is hash-pinned. v2.1 replaces only the complete modem set, keeping
+The vendor base is hash-pinned. Both boards replace the complete modem set, keeping
 the same public vendor Wi-Fi/support baseline used during the live acceptance.
 Never accepts a device NV dump or a whole-disk image as package input.
 """
@@ -106,27 +106,25 @@ def deb_bytes(control, data):
 
 
 def build(base, board, profile_path, modem_dir, version):
-    if board == 'uz801-v3.0' and modem_dir:
-        raise ValueError('v3.0 must retain the pinned vendor baseline')
+    expected = {'uz801-v2.1': 'uz801-v2.1-b04', 'uz801-v3.0': 'uz801-v3.0-b08'}
+    if board not in expected or not profile_path or not modem_dir:
+        raise ValueError('Both boards require an explicit pinned complete modem profile/source')
+    profile = validate_profile(profile_path, modem_dir)
+    pinned = json.loads((Path(__file__).resolve().parents[1] / 'rootfs/firmware-profiles' / (expected[board] + '.json')).read_text())
+    if profile != pinned:
+        raise ValueError('Board profile must exactly match the repository pinned profile')
     if not re.fullmatch(r'[0-9][A-Za-z0-9.+:~\-]*', version):
         raise ValueError('Invalid Debian package version')
     if digest(Path(base).read_bytes()) != BASE_SHA256:
         raise ValueError('Vendor base SHA256 mismatch')
     files = read_data(base)
-    if modem_dir:
-        profile = validate_profile(profile_path, modem_dir)
-        if profile['id'] != 'uz801-v2.1-b04':
-            raise ValueError('v2.1 package requires the audited B04 profile')
-        for name in profile['files']:
-            files['usr/lib/firmware/' + name] = (Path(modem_dir) / name).read_bytes()
-    else:
-        names = [name for name in files if re.fullmatch(r'usr/lib/firmware/(modem\.(?:mdt|b\d\d)|mba\.mbn)', name)]
-        profile = {'schema_version': 1, 'id': 'uz801-v3.0-b10',
-                   'description': 'Pinned vendor modem baseline tested on one user-confirmed v3.0 board',
-                   'firmware_revision': 'UZ801_V3.0_21_V01R01B10',
-                   'scope': 'Modem executable firmware only; no per-device NV partitions',
-                   'source_warning': 'Vendor executable package baseline; not a per-device factory backup',
-                   'files': {Path(name).name: {'sha256': digest(files[name]), 'bytes': len(files[name])} for name in sorted(names)}}
+    # A published vendor filename is not evidence of board compatibility. Replace
+    # the entire modem set with the explicitly audited, board-pinned source.
+    for name in list(files):
+        if re.fullmatch(r'usr/lib/firmware/(modem\.(?:mdt|b\d\d)|mba\.mbn)', name):
+            del files[name]
+    for name in profile['files']:
+        files['usr/lib/firmware/' + name] = (Path(modem_dir) / name).read_bytes()
     files['usr/share/uz801/modem-firmware-profile.json'] = (json.dumps(profile, indent=2) + '\n').encode()
     name = board + '-firmware'
     opposite = 'uz801-v2.1-firmware' if board == 'uz801-v3.0' else 'uz801-v3.0-firmware'
@@ -157,8 +155,8 @@ def main():
     parser.add_argument('--version', default='1.0.0+20261020')
     parser.add_argument('--output-dir', type=Path, required=True)
     args = parser.parse_args()
-    if args.board == 'uz801-v2.1' and not (args.profile and args.modem_dir):
-        parser.error('v2.1 requires the validated complete modem source and profile')
+    if not (args.profile and args.modem_dir):
+        parser.error('Both boards require a validated complete modem source and profile')
     payload, manifest, profile = build(args.base_deb, args.board, args.profile, args.modem_dir, args.version)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     output = args.output_dir / manifest['filename']

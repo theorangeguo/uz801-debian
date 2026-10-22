@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "uz801-v3.0-b10",
-  "description": "Pinned vendor modem baseline tested on one user-confirmed v3.0 board",
+  "description": "Historical vendor B10 baseline rejected on the tested v3.0 board; not selected for new builds",
   "firmware_revision": "UZ801_V3.0_21_V01R01B10",
   "scope": "Modem executable firmware only; no per-device NV partitions",
   "source_warning": "Vendor executable package baseline; not a per-device factory backup",

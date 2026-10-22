@@ -18,4 +18,10 @@ For ordinary maintenance, deploy the common selector sources using tools/deploy-
 
 ## Candidate image result (2026-10-21)
 
-The published `uz801-v3.0-b10` candidate was flashed to the confirmed 1797 board with complete rootfs readback; GPT, boot, aboot and all four NV partitions were preserved. Debian, ADB, IMEI and 145 firmware file hashes passed, but the preflash modem was B08 and the postflash B10 modem returned QMI `DeviceNotReady` and did not register. This candidate is rejected for this board. Do not restore NV to address this result. The complete preflash system rollback and comparison report remain in the private workspace; B08 provenance must be reviewed before creating a new v3.0 package.
+The published `uz801-v3.0-b10` candidate was flashed to the tested v3.0 board with complete rootfs readback; GPT, boot, aboot and all four NV partitions were preserved. Debian, ADB, IMEI and 145 firmware file hashes passed, but the preflash modem was B08 and the postflash B10 modem returned QMI `DeviceNotReady` and did not register. This candidate is rejected for this board. Do not restore NV to address this result. The complete preflash system rollback and comparison report remain in the private workspace. The identified rollback B08 source was subsequently audited and restored registration in a controlled modem-only trial on the new system; new builds select B08.
+
+## B08 modem-only trial (2026-10-22)
+
+The complete 22-file B08 set was extracted from the hash-verified, CID/IMEI-identified preflash EDL rootfs rollback. Replacing only these executable files on the new Debian system restored registration; all four physical NV hashes stayed unchanged. No GPT, boot, bootloader or NV writes were used in this trial. New packaging requires the explicit uz801-v3.0-b08 profile and cannot silently retain B10. This trial does not by itself certify a newly rebuilt full image or incoming SMS.
+
+Persistence was verified after a user-performed physical power disconnect/reconnect on 2026-10-22: B08/profile hashes matched, the SIM selector and registration passed, physical NV stayed unchanged and no trial mounts remained. No cellular bearer or cellular traffic was present. Incoming SMS and a newly rebuilt full-image installation remain separate unperformed checks.

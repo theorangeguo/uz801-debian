@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "uz801-v3.0-b08",
+  "description": "Complete B08 modem executable set from the identified preflash registered v3.0 system; acceptance recorded separately",
+  "firmware_revision": "UZ801_V01R01B08",
+  "scope": "Modem executable files only; no NV partitions or credentials",
+  "source_warning": "Identified preflash system extraction, not asserted untouched factory firmware or compatibility with every PCB variant",
+  "files": {
+    "mba.mbn": {
+      "bytes": 234176,
+      "sha256": "78732e32845a4fa65da9ee1cb68207ccc53b26e21f8dbf47ac0216d7a7a2b2cd"
+    },
+    "modem.b00": {
+      "bytes": 916,
+      "sha256": "9f01326510aac0fc496ed22fa8f33bbd0477044290c63bb6cb67dde63235c023"
+    },
+    "modem.b01": {
+      "bytes": 7304,
+      "sha256": "af44b36312891880a80223b9f198086905f8429735b8ee96573cadde81f36d21"
+    },
+    "modem.b02": {
+      "bytes": 4212,
+      "sha256": "413f4fe1018f58051fa8d1490b3c100feb6056985814f7715d1ae78b5887d112"
+    },
+    "modem.b03": {
+      "bytes": 5376,
+      "sha256": "e5de309f5ef2a62e799302c8b6349e5eadc39be00983b349a4298a20ae21b4d5"
+    },
+    "modem.b04": {
+      "bytes": 139616,
+      "sha256": "b09b1c7fcb05d3269f455cf2b1717a4c790057992a548f92e589c4109a53f952"
+    },
+    "modem.b05": {
+      "bytes": 81920,
+      "sha256": "bc7d42dd348aae06c13fec3f60f7e6db630f28778256b100955b90d1e9513dcf"
+    },
+    "modem.b08": {
+      "bytes": 172560,
+      "sha256": "3db2ef6be227e0bc23346f09357d2f505a64e725db00a5072ee9272fac77dafc"
+    },
+    "modem.b10": {
+      "bytes": 48704,
+      "sha256": "6487aedc0247a04ea32d2aec481635a496687566211da6513ff35468bc829f22"
+    },
+    "modem.b11": {
+      "bytes": 46424,
+      "sha256": "d1cee58e7a7164938ed03405f229c40b715773af1183bc8794cbc7eb632850c0"
+    },
+    "modem.b13": {
+      "bytes": 99508,
+      "sha256": "87b4555e26fa746b28d205b764308161b766cd05fd1d8bf85a03c4fab55c3b01"
+    },
+    "modem.b14": {
+      "bytes": 116020,
+      "sha256": "199395f33b82f5f5a9d70117db79a5efb8c727fe2b9860298d4d7584bdbda4ab"
+    },
+    "modem.b15": {
+      "bytes": 1663176,
+      "sha256": "d69a6335614031f42475d4f982d4d3f4e61343a16c22bb83da18497637f7405e"
+    },
+    "modem.b16": {
+      "bytes": 19443952,
+      "sha256": "c3d74d0c893f5b23d222d0103cb8d09277e385c6e4cd5a15c13002cca304d50a"
+    },
+    "modem.b17": {
+      "bytes": 663520,
+      "sha256": "cc3635fbbf00db873bc4aa1d94edcef4dca25ca93dcd334f05ed4b0c53c1b34c"
+    },
+    "modem.b18": {
+      "bytes": 7704704,
+      "sha256": "db8f573bbf499c9c62c6321bda0e8fd2d69e9b857e6b86ad2c3d01646f12f143"
+    },
+    "modem.b19": {
+      "bytes": 3086120,
+      "sha256": "12f313fb98554b5f54cc989c203c77fd26fecec9358d4dfcf934b6a6dde57329"
+    },
+    "modem.b22": {
+      "bytes": 76464,
+      "sha256": "ae07dfc1d30db7cd01ca411dc507b91b1fe5834903bf3418adfdcaf6e1e05841"
+    },
+    "modem.b23": {
+      "bytes": 503338,
+      "sha256": "fd42e16d6227aa856c7aff622af33671905dbc407af2b6d68efab64fd7744793"
+    },
+    "modem.b24": {
+      "bytes": 7902824,
+      "sha256": "6826129feafd2c6823ec18492b7723aa866b1a95cde574a4f2e115f2418f56ed"
+    },
+    "modem.b25": {
+      "bytes": 773356,
+      "sha256": "5d54c3a051bd92c1d2909e9492f8363583e1b995c30d4b74aeac7e04bd36c57d"
+    },
+    "modem.mdt": {
+      "bytes": 8220,
+      "sha256": "154d12dbd7183ae814c1f665982f197a21be9701c67feed1a81de028d9883c4a"
+    }
+  }
+}

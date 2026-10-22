@@ -10,11 +10,21 @@ from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from package_firmware import ar_members, deb_bytes, read_data, tar_gz
+from package_firmware import ar_members, deb_bytes, read_data, tar_gz, build
 from build_inputs import fetch, load, prepare
 
 
 class BoardDependencyTests(unittest.TestCase):
+    def test_implicit_vendor_baseline_refused_for_both_boards(self):
+        for board in ('uz801-v2.1', 'uz801-v3.0'):
+            with self.subTest(board=board), self.assertRaisesRegex(ValueError, 'explicit pinned'):
+                build('unused.deb', board, None, None, '1.0')
+
+    def test_wrong_board_profile_refused_before_reading_vendor_base(self):
+        with patch('package_firmware.validate_profile', return_value={'id': 'uz801-v2.1-b04'}):
+            with self.assertRaisesRegex(ValueError, 'exactly match'):
+                build('unused.deb', 'uz801-v3.0', 'profile.json', 'candidate', '1.0')
+
     def test_deterministic_tar_and_valid_deb_container(self):
         first = tar_gz({'usr/lib/firmware/b': b'b', 'usr/lib/firmware/a': b'a'})
         second = tar_gz({'usr/lib/firmware/a': b'a', 'usr/lib/firmware/b': b'b'})

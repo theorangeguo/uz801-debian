@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "dependency_release": "board-dependencies-2026.10.20.1",
+  "dependency_release": "board-dependencies-2026.10.22.1",
   "architecture": "arm64",
   "distribution": "bookworm",
   "kernel_release": "v6.6.92-arm64",
@@ -26,7 +26,7 @@
   },
   "utils": {
     "filename": "openstick-utils-all.deb",
-    "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.20.1/openstick-utils-all.deb",
+    "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.22.1/openstick-utils-all.deb",
     "sha256": "413c88713da53e7df6bb9944233603d6076ff0079319fb114e1d3dc04b5eac88",
     "bytes": 2432498
   },
@@ -37,7 +37,7 @@
       "firmware_profile": "uz801-v2.1-b04",
       "firmware": {
         "filename": "uz801-v2.1-firmware.deb",
-        "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.20.1/uz801-v2.1-firmware.deb",
+        "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.22.1/uz801-v2.1-firmware.deb",
         "sha256": "378da88ebbece4c825ce72122271f12cb7375dd39409a2557a7b94bcedcd3911",
         "bytes": 29119592,
         "package": "uz801-v2.1-firmware",
@@ -47,12 +47,12 @@
     "uz801-v3.0": {
       "product": "uz801-v3.0-debian",
       "hostname": "uz801-v3-0",
-      "firmware_profile": "uz801-v3.0-b10",
+      "firmware_profile": "uz801-v3.0-b08",
       "firmware": {
         "filename": "uz801-v3.0-firmware.deb",
-        "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.20.1/uz801-v3.0-firmware.deb",
-        "sha256": "1a3e270ae055748a3d585fe86111cacf007c162d7c3d294f973ff4855c08feaf",
-        "bytes": 29652948,
+        "url": "https://github.com/theorangeguo/uz801-debian/releases/download/board-dependencies-2026.10.22.1/uz801-v3.0-firmware.deb",
+        "sha256": "b0433a9ae33936d5e7f23a0a7fcfdb33499a2d4dc4209ed5b684aac51a28337c",
+        "bytes": 29653276,
         "package": "uz801-v3.0-firmware",
         "manifest": "packaging/manifests/uz801-v3.0-firmware.json"
       }
