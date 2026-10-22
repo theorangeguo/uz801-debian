@@ -25,6 +25,8 @@ publish=false uploads Actions artifacts only. Explicit publish=true creates a pr
 
 Both board builds and publication passed in [run 39439771848](https://github.com/theorangeguo/uz801-debian/actions/runs/39439771848) from source commit `3ae9e9a734145bb3e03972cf4f283a2f09a86458`. The [two complete-image candidate bundles](https://github.com/theorangeguo/uz801-debian/releases/tag/debian-bookworm-arm64-39439771848-r1) are published as a prerelease. The v2.1 candidate passed system/first-boot/software-reboot checks. The v3.0 candidate passed system flash/readback/boot checks but its B10 modem was rejected with DeviceNotReady. Neither candidate has complete cold-boot/SMS acceptance.
 
+The corrected [v3.0 B08 complete-image candidate](https://github.com/theorangeguo/uz801-debian/releases/tag/debian-bookworm-arm64-39780807753-r1) passed [native ARM64 build 39780807753](https://github.com/theorangeguo/uz801-debian/actions/runs/39780807753). Its manifest selects B08 and the 2026.10.22.1 dependency lock. The modem-only upgrade on the new Debian base passed user power-cycle and software reboot; flashing this newly built complete-image candidate remains untested.
+
 ## Local build
 
 On an ARM64 Linux host with the build dependencies installed:
